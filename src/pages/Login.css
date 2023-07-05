@@ -1,0 +1,108 @@
+.bg-login{
+    background-image: url("../assets/bglogin.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+.login-wrapper{
+    background: #ffff;
+    border-radius: 20px;
+}
+.input-wrapper-login{
+    border: 1px solid black;
+}
+.input-wrapper-login, .btn-login{
+    border-radius: 6px;
+}
+.login-label{
+    font-size: 1.2rem;
+}
+.input-login{
+    width: 95%;
+    border: none;
+    font-size: 1.1rem;
+    padding: 6px 0;
+}
+.btn-login{
+    width: 100%;
+    height: 44px;
+    font-size: 1.2rem;
+    border: none;
+    background-color: #576CBC;
+}
+
+/* Responsive */
+@media screen and (max-width:1399px) {
+    .login-head{
+        font-size: 1.8rem;
+    }
+}
+@media screen and (max-width:1199px) {
+    .login-head{
+        font-size: 1.5rem;
+    }
+    .login-subhead{
+        font-size: 1.3rem;
+    }
+    .login-label{
+        font-size: 1rem;
+    }
+    .input-login{
+        font-size: 1rem;
+    }
+    .btn-login{
+        height: 40px;
+        font-size: 1.1rem;
+    }
+}
+@media screen and (max-width:1023px) {
+    
+}
+@media screen and (max-width:991px) {
+    
+}
+@media screen and (max-width: 767px) {
+    
+}
+@media screen and (max-width: 575px) {
+    .login-wrapper{
+        border-radius: 0px;
+    }
+}
+@media screen and (max-width: 424px) {
+    .login-head{
+        font-size: 1.4rem;
+    }
+    .login-subhead{
+        font-size: 1.2rem;
+    }
+    .login-label{
+        font-size: 0.9rem;
+    }
+    .input-login{
+        font-size: 0.9rem;
+    }
+    .btn-login{
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 374px) {
+    .login-head{
+        font-size: 1.2rem;
+    }
+    .login-subhead{
+        font-size: 1rem;
+    }
+    .login-label{
+        font-size: 0.8rem;
+    }
+    .input-login{
+        font-size: 0.8rem;
+        padding: 4px 0;
+    }
+    .btn-login{
+        font-size: 0.9rem;
+        height: 36px;
+    }
+}

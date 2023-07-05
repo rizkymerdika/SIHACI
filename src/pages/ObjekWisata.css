@@ -1,0 +1,135 @@
+#carouselRekomenWisata{
+    background-image: url(../assets/bgrekomen.svg);
+    background-size: cover;
+}
+#carouselRekomenWisata img{
+    height: 440px;
+}
+.carousel .carousel-indicators{
+    z-index: 1;
+}
+.carousel .carousel-indicators button, .slick-dots li button::before{
+    border-radius: 100%;
+    margin: 0 18px 0 18px;
+    background-color: #576CBC;
+}
+.carousel .carousel-indicators button{
+    width: 25px;
+    height: 25px;
+    opacity: .25;
+}
+.carousel .carousel-indicators button:hover, 
+.carousel .carousel-indicators button:focus
+{
+    opacity: .75;
+}
+.slick-dots li button::before{
+    width: 20px;
+    height: 20px;
+    transition: .5s;
+}
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before
+{
+    transition: .5s;
+}
+.carousel .carousel-indicators .active, .slick-dots li.slick-active button::before{
+    background-color: #19376D;
+    opacity: 1;
+}
+.wisata-slider{
+    background: linear-gradient(180deg, rgba(64, 112, 236, 0.3) 0%, rgba(165, 215, 232, 0.3) 68.15%);
+}
+.objek-wisata-card, .event-pariwisata-card{
+    border: 1px solid #000000;
+}
+.objek-wisata-card, .kuliner-card, .travel-card, .event-card, .event-pariwisata-card{
+    width: 90%;
+}
+.objek-wisata-card, 
+.kuliner-card, 
+.img-wisata-outline, 
+.img-kuliner-outline, 
+.travel-card, .event-card, 
+.img-travel-outline, 
+.img-event-outline, 
+.konten-outline, 
+.event-pariwisata-card{
+    border-radius: 30px;
+}
+.card-img-top{
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+.card-body{
+    height: 105px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slider-lainnya{
+    font-size: 2rem;
+}
+
+/* Responsive */
+@media screen and (max-width:1399px) {
+    
+}
+@media screen and (max-width:1199px) {
+    .card-title{
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width:1023px) {
+    
+}
+@media screen and (max-width:991px) {
+    #carouselRekomenWisata img{
+        height: 300px;
+    }
+    .card-title{
+        font-size: 1rem;
+    }
+    .slider-lainnya{
+        font-size: 1.5rem;
+    }
+    .card-body{
+        height: 95px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .slick-arrow{
+        visibility: hidden;
+    }
+}
+@media screen and (max-width: 575px) {
+    #carouselRekomenWisata img{
+        height: 200px;
+    }
+    .card-title{
+        font-size: 1.3rem;
+    }
+    .slider-lainnya{
+        font-size: 1.3rem;
+    }
+    .carousel .carousel-indicators button{
+        width: 20px;
+        height: 20px;
+    }
+}
+@media screen and (max-width: 424px) {
+    .card-title{
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 374px) {
+    #carouselRekomenWisata img{
+        height: 190px;
+    }
+    .card-title{
+        font-size: 1.1rem;
+    }
+    .slider-lainnya{
+        font-size: 1.1rem;
+    }
+}

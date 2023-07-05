@@ -1,0 +1,285 @@
+.logo{
+    width: 310px;
+    height: 108px;
+}
+.slide-image{
+    width: 100%;
+}
+.nav, .nav-admin{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.nav{
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 2;
+}
+.nav-menu{
+    font-size: 1rem;
+}
+.nav-bars-list{
+    display: none;
+}
+.nav-bars-menu{
+    font-size: 1.2rem;
+    border-bottom: 2px solid #D9D9D9;
+}
+.form{
+    width: 100%;
+}
+.input-wrapper, .input-wrapper-2{
+    background: #D9D9D9;
+    width: 100%;
+}
+.input-wrapper{
+    border-radius: 30px;
+    padding: 0 10px 0 10px;
+}
+.input-wrapper-2{
+    border-radius: 10px;
+    padding: 9px 20px 9px 20px;
+}
+.search-input, .search-input-2{
+    background: transparent;
+}
+.search-input{
+    width: 100%;
+    height: 100%;
+    font-size: 0.9rem;
+    margin-right: 3px;
+}
+.search-input-2{
+    font-size: 1.1rem;
+    width: 88%;
+}
+.button-search, .button-search-2{
+    background: transparent;
+}
+.button-search{
+    width: 24px;
+}
+.button-search-2{
+    width: 34px;
+}
+.carousel-shadow{
+    filter: drop-shadow(0px 14px 4px rgba(0, 0, 0, 0.4));
+}
+.foot, .header-bg, #dropdown-menu{
+    background: #0B2447;
+}
+.foot label a, .foot span, .footer-content, .footer-content a{
+    color: #fff;
+}
+.footer-content{
+    list-style: none;
+}
+.foot label{
+    width: 44px;
+}
+.foot span{
+    font-size: 1.25rem;
+}
+.header-bg p, #btn-dropdown, .dropdown-menu li a, .btn-login{
+    color: #F2F2F2;
+}
+.header-bg p, #btn-dropdown{
+    font-size: 2.25rem;
+}
+.bars{
+    display: none;
+}
+#dropdown-menu{
+    z-index: 1;
+}
+.dropdown-menu li a{
+    font-size: 1.5rem;
+}
+.dropdown-menu li:hover{
+    background: #F2F2F2;
+    color: #000000;
+}
+
+/* Responsive */
+@media screen and (max-width:1399px) {
+    .logo{
+        width: 260px;
+        height: 98px;
+    }
+    .nav-menu{
+        font-size: 0.9rem;
+    }
+    .form{
+        max-width: 162px;
+    }
+    .search-input{
+        font-size: 0.8rem;
+    }
+    .button-search{
+        width: 20px;
+    }
+    .header-bg p, #btn-dropdown{
+        font-size: 2rem;
+    }
+    .dropdown-menu li a{
+        font-size: 1.25rem;
+    }
+    .input-wrapper-2{
+        padding: 8px 20px 8px 20px;
+    }
+    .search-input-2{
+        font-size: 1rem;
+    }
+    .button-search-2{
+        width: 31px;
+    }
+}
+@media screen and (max-width:1199px) {
+    .logo{
+        width: 220px;
+    }
+    .nav-menu{
+        font-size: 0.8rem;
+    }
+    .form{
+        max-width: 170px;
+    }
+    .search-input{
+        font-size: 0.8rem;
+    }
+    .button-search{
+        width: 20px;
+    }
+    .foot h3{
+        font-size: 1.6rem;
+    }
+    .footer-content{
+        font-size: 0.9rem;
+    }
+    .header-bg p, #btn-dropdown{
+        font-size: 1.8rem;
+    }
+    .dropdown-menu li a{
+        font-size: 1.05rem;
+    }
+    .input-wrapper-2{
+        padding: 7px 20px 7px 20px;
+    }
+    .search-input-2{
+        font-size: 1rem;
+    }
+    .button-search-2{
+        width: 26px;
+    }
+}
+@media screen and (max-width:1023px) {
+    
+}
+@media screen and (max-width:991px) {
+    .nav{
+        position: unset;
+    }
+    .bars{
+        display: unset;
+    }
+    .nav-bars-list{
+        display: block;
+    }
+    .nav-list-menu{
+        display: none;
+    }
+    .logo{
+        width: 155px;
+        height: 78px;
+    }
+    .form{
+        max-width: none;
+    }
+    .search-input{
+        font-size: 1.2rem;
+        margin: 0 16px 0 16px;
+    }
+    .input-wrapper{
+        padding: 10px 0 10px 0;
+    }
+    .button-search{
+        width: 30px;
+        margin: 0 16px 0 0;
+    }
+    .foot label{
+        width: 34px;
+    }
+    .header-bg p, #btn-dropdown{
+        font-size: 1.5rem;
+    }
+    .dropdown-menu li a{
+        font-size: 0.9rem;
+    }
+    .search-input-2{
+        font-size: 0.9rem;
+    }
+}
+@media screen and (max-width: 767px) {
+    .nav-bars-menu{
+        font-size: 1rem;
+    }
+    .search-input{
+        font-size: 1rem;
+    }
+    .button-search{
+        width: 24px;
+    }
+}
+@media screen and (max-width: 575px) {
+    .input-wrapper{
+        padding: 8px 0 8px 0;
+    }
+    .foot span{
+        font-size: 1rem;
+    }
+    .header-bg p, #btn-dropdown{
+        font-size: 1.3rem;
+    }
+    .dropdown-menu li a{
+        font-size: 0.8rem;
+    }
+}
+@media screen and (max-width: 424px) {
+    .logo{
+        width: 145px;
+    }
+    .nav-bars-menu{
+        font-size: 0.9rem;
+    }
+    .search-input{
+        font-size: 0.9rem;
+    }
+    .input-wrapper{
+        padding: 6px 0 6px 0;
+    }
+    .header-bg p, #btn-dropdown{
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 374px) {
+    .logo{
+        width: 135px;
+    }
+    .nav-bars-menu{
+        font-size: 0.8rem;
+    }
+    .search-input{
+        font-size: 0.8rem;
+    }
+    .input-wrapper{
+        padding: 4px 0 4px 0;
+    }
+    .button-search{
+        width: 20px;
+    }
+    .foot label{
+        width: 30px;
+    }
+    .header-bg p, #btn-dropdown{
+        font-size: 1.1rem;
+    }
+}

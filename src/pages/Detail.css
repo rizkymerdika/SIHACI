@@ -1,0 +1,76 @@
+.konten-outline{
+    box-shadow: -10px 4px 4px rgba(0, 0, 0, 0.25), 10px 10px 4px rgba(0, 0, 0, 0.4);
+}
+.img-wisata-outline{
+    filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.4));
+    height: 500px;
+}
+.map{
+    height: 450px;
+}
+.link-account-contacts div{
+    width: 75px;
+}
+.link-account-contacts div a img{
+    width: 50px;
+}
+
+/* Responsive */
+@media screen and (max-width:1399px) {
+
+}
+@media screen and (max-width:1199px) {
+    .link-account-contacts div a img{
+        width: 40px;
+    }
+}
+@media screen and (max-width:1023px) {
+    
+}
+@media screen and (max-width:991px) {
+    .img-wisata-outline{
+        height: 400px;
+    }
+    .map{
+        height: 350px;
+    }
+    .link-account-contacts div{
+        width: 70px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .img-wisata-outline{
+        height: 300px;
+    }
+}
+@media screen and (max-width: 575px) {
+    .konten-outline{
+        border-radius: 0px;
+    }
+    .img-wisata-outline{
+        height: 250px;
+    }
+    .map{
+        height: 250px;
+    }
+    .link-account-contacts div{
+        width: 60px;
+    }
+    .link-account-contacts div a img{
+        width: 33px;
+    }
+}
+@media screen and (max-width: 424px) {
+    
+}
+@media screen and (max-width: 374px) {
+    .img-wisata-outline{
+        height: 200px;
+    }
+    .link-account-contacts div{
+        width: 55px;
+    }
+    .link-account-contacts div a img{
+        width: 30px;
+    }
+}
