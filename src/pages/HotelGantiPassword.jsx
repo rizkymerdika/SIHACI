@@ -3,8 +3,13 @@ import Sidebar2 from "../components/Sidebar2"
 import { Helmet } from "react-helmet"
 import NavHotel from "../components/NavHotel"
 import KontenHotelGPW from "../components/KontenHotelGPW"
+import React, { useEffect } from 'react'
 
 function HotelGantiPassword() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
   return (
     <div className="d-flex h-100">
         <Helmet>

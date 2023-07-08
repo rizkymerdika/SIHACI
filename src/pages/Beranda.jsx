@@ -7,8 +7,13 @@ import Infowisata from '../components/Infowisata'
 import GaleriWisata from '../components/GaleriWisata'
 import Footer from '../components/footer'
 import EventPariwisata from '../components/EventPariwisata'
+import React, { useEffect } from 'react'
 
 function Beranda() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
   return (
     <>
       <Helmet>

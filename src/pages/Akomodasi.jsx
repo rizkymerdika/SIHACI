@@ -8,8 +8,13 @@ import Footer from "../components/footer"
 import HotelBintang from "../components/HotelBintang"
 import HotelNonBintang from "../components/HotelNonBintang"
 import Villa from "../components/Villa"
+import React, { useEffect } from 'react'
 
 function Akomodasi() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
   return (
     <>
       <Helmet>

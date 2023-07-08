@@ -6,8 +6,13 @@ import Nav from "../components/Nav"
 import RekomendasiKuliner from '../components/RekomendasiKuliner'
 import KulinerCianjur from '../components/KulinerCianjur'
 import Footer from '../components/footer'
+import React, { useEffect } from 'react'
 
 function Kuliner() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
   return (
     <>
       <Helmet>

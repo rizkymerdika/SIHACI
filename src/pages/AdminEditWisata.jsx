@@ -1,8 +1,13 @@
 import "./Admin.css"
 import { Helmet } from "react-helmet"
 import FormAdminEditWisata from "../components/FormAdminEditWisata"
+import React, { useEffect } from 'react'
 
 function AdminEditWisata() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
   return (
     <>
         <Helmet>

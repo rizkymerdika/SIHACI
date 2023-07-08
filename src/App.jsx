@@ -1,8 +1,5 @@
 import './App.css'
 import React from 'react'
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
-import '../node_modules/bootstrap/dist/js/bootstrap.js'
-import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js'
 import "../node_modules/slick-carousel/slick/slick.css";
 import "../node_modules/slick-carousel/slick/slick-theme.css";
 import { Route, Routes } from 'react-router-dom';

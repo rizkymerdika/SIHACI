@@ -8,8 +8,13 @@ import WisataAlam from '../components/WisataAlam'
 import Footer from '../components/footer'
 import WisataBuatan from '../components/WisataBuatan'
 import WisataBudaya from '../components/WisataBudaya'
+import React, { useEffect } from 'react'
 
 function ObjekWisata() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
   return (
     <>
       <Helmet>

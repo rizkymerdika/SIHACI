@@ -4,10 +4,14 @@ import Nav from "../components/Nav"
 import Footer from "../components/footer"
 import ListHasilSearch from "../components/ListHasilSearch"
 import { useParams } from "react-router-dom"
+import React, { useEffect } from 'react'
 
 function HasilSearch() {
     const searchValue = useParams()
-    
+
+    useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
   return (
     <>
       <Helmet>

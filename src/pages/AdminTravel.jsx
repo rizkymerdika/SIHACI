@@ -3,8 +3,13 @@ import { Helmet } from "react-helmet"
 import Sidebar from "../components/Sidebar"
 import NavAdmin from "../components/NavAdmin"
 import KontenAdminTravel from "../components/KontenAdminTravel"
+import React, { useEffect } from 'react'
 
 function AdminTravel() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="d-flex h-100">
         <Helmet>

@@ -3,8 +3,13 @@ import Nav from "../components/Nav"
 import Footer from "../components/footer"
 import Header2 from "../components/Header2"
 import ListHB from "../components/ListHB"
+import React, { useEffect } from 'react'
 
 function HBLainnya() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
   return (
     <>
         <Helmet>
