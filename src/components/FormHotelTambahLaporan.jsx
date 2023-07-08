@@ -51,6 +51,7 @@ function FormHotelTambahLaporan() {
                         <option>Silahkan Pilih</option>
                         <option value="Hotel Bintang">Hotel Bintang</option>
                         <option value="Hotel Non Bintang">Hotel Non Bintang</option>
+                        <option value="Villa">Villa</option>
                       </select>
                     </div>
                     <div className="mb-3">
