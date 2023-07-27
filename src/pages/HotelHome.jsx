@@ -4,9 +4,15 @@ import { Helmet } from "react-helmet"
 import KontenHotelListLaporan from "../components/KontenHotelListLaporan"
 import NavHotel from "../components/NavHotel"
 import React, { useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
 
 function HotelHome() {
+  const navigate = useNavigate()
+
   useEffect(() => {
+    if (localStorage.getItem('id_user') == null) {
+      navigate('/login')
+    }
     window.scrollTo(0, 0)
   }, [])
 

@@ -57,46 +57,46 @@ function App() {
           <Route index element={<ObjekWisata/>}/>
           <Route path='wisataalam'>
             <Route index element={<WALainnya/>}/>
-            <Route path='detailwisata' element={<DetailWisata/>}/>
+            <Route path='detailwisata/:id' element={<DetailWisata/>}/>
           </Route>
           <Route path='wisatabuatan'>
             <Route index element={<WBLainnya/>}/>
-            <Route path='detailwisata' element={<DetailWisata/>}/>
+            <Route path='detailwisata/:id' element={<DetailWisata/>}/>
           </Route>
           <Route path='wisatabudaya'>
             <Route index element={<KBDLainnya/>}/>
-            <Route path='detailwisata' element={<DetailWisata/>}/>
+            <Route path='detailwisata/:id' element={<DetailWisata/>}/>
           </Route>
         </Route>
         <Route path='/akomodasi'>
           <Route index element={<Akomodasi/>}/>
           <Route path='hotelbintang'>
             <Route index element={<HBLainnya/>}/>
-            <Route path='detailakomodasi' element={<DetailHotel/>}/>
+            <Route path='detailakomodasi/:id' element={<DetailHotel/>}/>
           </Route>
           <Route path='hotelnonbintang'>
             <Route index element={<HNBLainnya/>}/>
-            <Route path='detailakomodasi' element={<DetailHotel/>}/>
+            <Route path='detailakomodasi/:id' element={<DetailHotel/>}/>
           </Route>
           <Route path='villa'>
             <Route index element={<VillaLainnya/>}/>
-            <Route path='detailakomodasi' element={<DetailHotel/>}/>
+            <Route path='detailakomodasi/:id' element={<DetailHotel/>}/>
           </Route>
         </Route>
         <Route path='/kuliner'>
           <Route index element={<Kuliner/>}/>
           <Route path='rekomendasikuliner'>
             <Route index element={<KulinerLainnya/>}/>
-            <Route path='detailkuliner' element={<DetailKuliner/>}/>
+            <Route path='detailkuliner/:id' element={<DetailKuliner/>}/>
           </Route>
         </Route>
         <Route path='/travel'>
           <Route index element={<Travel/>}/>
-          <Route path='detailtravel' element={<DetailTravel/>}/>
+          <Route path='detailtravel/:id' element={<DetailTravel/>}/>
         </Route>
         <Route path='/event'>
           <Route index element={<Event/>}/>
-          <Route path='detailevent' element={<DetailEvent/>}/>
+          <Route path='detailevent/:id' element={<DetailEvent/>}/>
         </Route>
         <Route path='/hasilpenelusuran/:id' element={<HasilSearch/>}/>
         <Route path='/login' element={<Login/>}/>
@@ -105,36 +105,36 @@ function App() {
           <Route path='objekwisata'>
             <Route index element={<AdminOW/>}/>
             <Route path='tambahwisata' element={<AdminTambahWisata/>}/>
-            <Route path='editwisata' element={<AdminEditWisata/>}/>
+            <Route path='editwisata/:id' element={<AdminEditWisata/>}/>
           </Route>
           <Route path='akomodasi'>
             <Route index element={<AdminAkomodasi/>}/>
             <Route path='tambahakomodasi' element={<AdminTambahAkomodasi/>}/>
-            <Route path='editakomodasi' element={<AdminEditAkomodasi/>}/>
+            <Route path='editakomodasi/:id' element={<AdminEditAkomodasi/>}/>
           </Route>
           <Route path='kuliner'>
             <Route index element={<AdminKuliner/>}/>
             <Route path='tambahkuliner' element={<AdminTambahKuliner/>}/>
-            <Route path='editkuliner' element={<AdminEditKuliner/>}/>
+            <Route path='editkuliner/:id' element={<AdminEditKuliner/>}/>
           </Route>
           <Route path='travel'>
             <Route index element={<AdminTravel/>}/>
             <Route path='tambahtravel' element={<AdminTambahTravel/>}/>
-            <Route path='edittravel' element={<AdminEditTravel/>}/>
+            <Route path='edittravel/:id' element={<AdminEditTravel/>}/>
           </Route>
           <Route path='event'>
             <Route index element={<AdminEvent/>}/>
             <Route path='tambahevent' element={<AdminTambahEvent/>}/>
-            <Route path='editevent' element={<AdminEditEvent/>}/>
+            <Route path='editevent/:id' element={<AdminEditEvent/>}/>
           </Route>
           <Route path='gantipassword' element={<AdminGantiPassword/>}/>
           <Route path='registrasi' element={<RegisAkunHotel/>}/>
           <Route path='listhotel'>
             <Route index element={<AdminLaporanHotel/>}/>
-            <Route path='detaillaporan' element={<AdminDetailLaporanHotel/>}/>
+            <Route path='detaillaporan/:id' element={<AdminDetailLaporanHotel/>}/>
           </Route>
         </Route>
-        <Route path='hotel'>
+        <Route path='hotel/:id'>
           <Route index element={<HotelHome/>}/>
           <Route path='tambahlaporan' element={<HotelTambahLaporan/>}/>
           <Route path='gantipassword' element={<HotelGantiPassword/>}/>

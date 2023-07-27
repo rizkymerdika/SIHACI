@@ -9,6 +9,16 @@
     background-image: url(../assets/bgkulinercianjur.svg);
     background-size: cover;
 }
+.kuliner-card img{
+    height: 222px;
+}
+#slider-lainnya-kuliner{
+    color: #fff;
+}
+#slider-lainnya-kuliner:hover{
+    color: #19376D;
+    transition: .3s;
+}
 
 /* Responsive */
 @media screen and (max-width:1399px) {
@@ -18,6 +28,9 @@
     .card-text{
         font-size: 0.9rem;
     }
+    .kuliner-card img{
+        height: 205px;
+    }
 }
 @media screen and (max-width:1023px) {
     
@@ -25,6 +38,9 @@
 @media screen and (max-width:991px) {
     #carouselRekomenKuliner img{
         height: 300px;
+    }
+    .kuliner-card img{
+        height: 190px;
     }
 }
 @media screen and (max-width: 767px) {
@@ -39,6 +55,9 @@
     }
     .card-text{
         font-size: 1.1rem;
+    }
+    .kuliner-card img{
+        height: 222px;
     }
 }
 @media screen and (max-width: 424px) {

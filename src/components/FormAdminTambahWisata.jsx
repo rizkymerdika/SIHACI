@@ -1,14 +1,23 @@
+import axios from "axios";
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
 function FormAdminTambahWisata() {
+  const api = import.meta.env.VITE_APP_API;
+  const oW = import.meta.env.VITE_API_SET_OW
+  const url = `${api}${oW}`
+
   const [namaWisata, setNamaWisata] = useState('')
   const [kategori, setKategori] = useState('')
   const [jamBukaHariKerja, setJamBukaHariKerja] = useState('')
+  const [jamTutupHariKerja, setJamTutupHariKerja] = useState('')
   const [jamBukaHariLibur, setJamBukaHariLibur] = useState('')
+  const [jamTutupHariLibur, setJamTutupHariLibur] = useState('')
   const [hargaTiketHariKerja, setHargaTiketHariKerja] = useState('')
   const [hargaTiketHariLibur, setHargaTiketHariLibur] = useState('')
   const [alamat, setAlamat] = useState('')
+  const [banner, setBanner] = useState(null)
+  const [image, setImage] = useState(null)
   const [deskripsiWisata, setDeskripsiWisata] = useState('')
   const [linkGoogleMaps, setLinkGoogleMaps] = useState('')
   const [linkWebsite, setLinkWebsite] = useState('')
@@ -21,6 +30,59 @@ function FormAdminTambahWisata() {
     setKategori(value)
   }
 
+  function handleSubmit(e){
+    e.preventDefault()
+    const formData = new FormData();
+    formData.append('nama_wisata', namaWisata)
+    formData.append('kategori_wisata', kategori)
+    formData.append('jam_buka_hari_kerja', jamBukaHariKerja)
+    formData.append('jam_tutup_hari_kerja', jamTutupHariKerja)
+    formData.append('jam_buka_weekend', jamBukaHariLibur)
+    formData.append('jam_tutup_weekend', jamTutupHariLibur)
+    formData.append('harga_tiket_hari_kerja', hargaTiketHariKerja)
+    formData.append('harga_tiket_weekend', hargaTiketHariLibur)
+    formData.append('alamat_wisata', alamat)
+    formData.append('banner_wisata', banner)
+    formData.append('image_wisata', image)
+    formData.append('deskripsi_wisata', deskripsiWisata)
+    formData.append('link_gmaps', linkGoogleMaps)
+    formData.append('link_website', linkWebsite)
+    formData.append('link_instagram', linkInstagram)
+    formData.append('link_facebook', linkFacebook)
+    formData.append('link_youtube', linkYoutube)
+    formData.append('link_twitter', linkTwitter)
+    fetch(url, {
+      method: 'POST',
+      body: formData
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      alert("Tambah Data Objek Wisata Berhasil");
+    })
+    .catch((error) => {
+      alert('Tambah Data Objek Wisata Gagal');
+    });
+
+    setNamaWisata('')
+    setKategori('')
+    setJamBukaHariKerja('')
+    setJamTutupHariKerja('')
+    setJamBukaHariLibur('')
+    setJamTutupHariLibur('')
+    setHargaTiketHariKerja('')
+    setHargaTiketHariLibur('')
+    setAlamat('')
+    setBanner('')
+    setImage('')
+    setDeskripsiWisata('')
+    setLinkGoogleMaps('')
+    setLinkWebsite('')
+    setLinkInstagram('')
+    setLinkFacebook('')
+    setLinkYoutube('')
+    setLinkTwitter('')
+  }
+
   return (
     <div className="bg-form-admin">
         <div className="container">
@@ -30,7 +92,7 @@ function FormAdminTambahWisata() {
                   <div className="col-11 my-3">
                     <h2 className="fw-bold text-center my-0">Tambah Objek Wisata</h2>
                   </div>
-                  <form className="col-11">
+                  <form className="col-11" encType="multipart/form-data" onSubmit={handleSubmit}>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Nama Wisata</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
@@ -48,14 +110,26 @@ function FormAdminTambahWisata() {
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Jam Buka (Hari Kerja)</label>
-                      <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="text" name="Jam Buka (Hari Kerja)" className="input-form-admin" placeholder="08.00 - 16-00" value={jamBukaHariKerja} onChange={(e) => setJamBukaHariKerja(e.target.value)} required/>
+                      <div className="d-flex align-items-center">
+                        <div className="input-wrapper-login d-flex justify-content-center flex-fill mt-1">
+                            <input type="time" name="Jam Buka" className="input-form-admin-2" value={jamBukaHariKerja} onChange={(e) => setJamBukaHariKerja(e.target.value)} required/>
+                        </div>
+                        <span className="s-d" style={{color: 'black'}}>-</span>
+                        <div className="input-wrapper-login d-flex justify-content-center flex-fill mt-1">
+                            <input type="time" name="Jam Tutup" className="input-form-admin-2" value={jamTutupHariKerja} onChange={(e) => setJamTutupHariKerja(e.target.value)} required/>
+                        </div>
                       </div>
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Jam Buka (Akhir Pekan & Libur Nasional)</label>
-                      <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="text" name="Jam Buka (Akhir Pekan & Libur Nasional)" className="input-form-admin" placeholder="07.00 - 16.00" value={jamBukaHariLibur} onChange={(e) => setJamBukaHariLibur(e.target.value)} required/>
+                      <div className="d-flex align-items-center">
+                        <div className="input-wrapper-login d-flex justify-content-center flex-fill mt-1">
+                            <input type="time" name="Jam Buka" className="input-form-admin-2" value={jamBukaHariLibur} onChange={(e) => setJamBukaHariLibur(e.target.value)} required/>
+                        </div>
+                        <span className="s-d" style={{color: 'black'}}>-</span>
+                        <div className="input-wrapper-login d-flex justify-content-center flex-fill mt-1">
+                            <input type="time" name="Jam Tutup" className="input-form-admin-2" value={jamTutupHariLibur} onChange={(e) => setJamTutupHariLibur(e.target.value)} required/>
+                        </div>
                       </div>
                     </div>
                     <div className="mb-3">
@@ -79,13 +153,13 @@ function FormAdminTambahWisata() {
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Banner</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="file" name="Banner" className="input-form-admin" required/>
+                        <input type="file" name="Banner" className="input-form-admin" onChange={(e) => setBanner(e.target.files[0])} required/>
                       </div>
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Image</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="file" name="Image" className="input-form-admin" required/>
+                        <input type="file" name="Image" className="input-form-admin" onChange={(e) => setImage(e.target.files[0])} required/>
                       </div>
                     </div>
                     <div className="mb-3">

@@ -2,19 +2,57 @@ import {BsPlusLg} from 'react-icons/bs'
 import {BiSearch} from 'react-icons/bi'
 import {AiFillEdit, AiFillDelete} from 'react-icons/ai'
 import Hotel1 from '../assets/hotel1.png'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function KontenAdminAkom() {
     const navigate = useNavigate()
+    const api = import.meta.env.VITE_APP_API;
+    const getAkomodasi = import.meta.env.VITE_API_GET_AKOMODASI
+    const getImage = import.meta.env.VITE_API_GET_IMAGE_AKOMODASI
+    const deleteAkomodasi = import.meta.env.VITE_API_DELETE_AKOMODASI
+    const image = `${api}${getImage}`;
+    const url = `${api}${getAkomodasi}`
+    const url2 = `${api}${deleteAkomodasi}`
+
+    const [akomodasi, setAkomodasi] = useState([])
     const [searchValue, setSearchValue] = useState('')
+    const [newFilterData, setNewFilterData] = useState([])
+
+    useEffect(() => {
+        axios(url)
+        .then((res) => {
+            setAkomodasi(res.data.data)
+            console.log(res)
+        })
+    }, [])
 
     function directTambah() {
         navigate('/admin/akomodasi/tambahakomodasi')
     }
 
-    function directEdit() {
-        navigate('/admin/akomodasi/editakomodasi')
+    function directEdit(id) {
+        navigate(`/admin/akomodasi/editakomodasi/${id}`)
+    }
+
+    function directDelete(id){
+        const text = "Apakah Anda yakin ingin menghapus data?";
+        if (confirm(text) == true) {
+            axios.delete(`${url2}${id}`)
+            .then((res) => {
+                alert("Hapus Data Berhasil")
+            })
+
+            location.reload()
+        }
+    }
+
+    function handleSearch() {
+        const filterData = akomodasi.filter((item) => {
+            return item.nama_akomodasi.toLowerCase().includes(searchValue.toLowerCase())
+        })
+        setNewFilterData(filterData)
     }
 
   return (
@@ -33,55 +71,65 @@ function KontenAdminAkom() {
                     </button>
                 </div>
                 <div className="col-sm-5 col-md-4 mt-2 mt-sm-0">
-                    <form>
+                    <div>
                         <div className='input-wrapper-2 d-flex align-items-center justify-content-between'>
-                            <input type="text" placeholder='Search' className='search-input-2 border-0' value={searchValue} onChange={(e) => setSearchValue(e.target.value)}/>
+                            <input type="text" placeholder='Search' className='search-input-2 border-0' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} onChangeCapture={() => handleSearch()}/>
                             <button type='submit' className='button-search-2 border-0'><BiSearch size={'100%'}/></button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
             <div className='row flex-wrap mt-0 mb-4 gy-4'>
-                <div className='col-lg-6'>
-                    <div className='list-data-wrapper d-flex justify-content-sm-between align-items-center flex-column flex-sm-row'>
-                        <div className='d-flex align-items-center flex-column flex-sm-row'>
-                            <img src={Hotel1} alt="Hotel Cianjur Cipanas" className='admin-img-1'/>
-                            <div className='data-title mt-2 mt-sm-0'>
-                                <span>Hotel Cianjur Cipanas</span>
+                {
+                    searchValue ? (
+                        newFilterData.map((item, index) => (
+                            <div className='col-lg-6' key={index}>
+                                <div className='list-data-wrapper d-flex justify-content-sm-between align-items-center flex-column flex-sm-row'>
+                                    <div className='d-flex align-items-center flex-column flex-sm-row'>
+                                        <img src={`${image}/${item.image_akomodasi}`} alt={item.nama_akomodasi} className='admin-img-1'/>
+                                        <div className='data-title mt-2 mt-sm-0'>
+                                            <span>{item.nama_akomodasi}</span>
+                                        </div>
+                                    </div>
+                                    <div className='btn-edit-hapus mt-2 mt-sm-0'>
+                                        <button className='btn-admin-2 justify-content-center justify-content-sm-start px-2 py-2 mb-2 mb-sm-3' style={{backgroundColor: '#E7B10A'}} onClick={() => directEdit(item.id_akomodasi)}>
+                                            <AiFillEdit size={"100%"} className='button-icon-2'/>
+                                            <div className='mx-2'><span>Edit</span></div>
+                                        </button>
+                                        <button className='btn-admin-2 justify-content-center justify-content-sm-start px-2 py-2 mt-2 mt-sm-3' style={{backgroundColor: '#B31312'}} onClick={() => directDelete(item.id_akomodasi)}>
+                                            <AiFillDelete size={"100%"} className='button-icon-2'/>
+                                            <div className='mx-2'><span>Hapus</span></div>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className='btn-edit-hapus mt-2 mt-sm-0'>
-                            <button className='btn-admin-2 justify-content-center justify-content-sm-start px-2 py-2 mb-2 mb-sm-3' style={{backgroundColor: '#E7B10A'}} onClick={directEdit}>
-                                <AiFillEdit size={"100%"} className='button-icon-2'/>
-                                <div className='mx-2'><span>Edit</span></div>
-                            </button>
-                            <button className='btn-admin-2 justify-content-center justify-content-sm-start px-2 py-2 mt-2 mt-sm-3' style={{backgroundColor: '#B31312'}}>
-                                <AiFillDelete size={"100%"} className='button-icon-2'/>
-                                <div className='mx-2'><span>Hapus</span></div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className='col-lg-6'>
-                    <div className='list-data-wrapper d-flex justify-content-sm-between align-items-center flex-column flex-sm-row'>
-                        <div className='d-flex align-items-center flex-column flex-sm-row'>
-                            <img src={Hotel1} alt="Hotel Cianjur Cipanas" className='admin-img-1'/>
-                            <div className='data-title mt-2 mt-sm-0'>
-                                <span>Hotel Cianjur Cipanas</span>
+                        ))
+                    ):
+                    (
+                        akomodasi.map((item, index) => (
+                            <div className='col-lg-6' key={index}>
+                                <div className='list-data-wrapper d-flex justify-content-sm-between align-items-center flex-column flex-sm-row'>
+                                    <div className='d-flex align-items-center flex-column flex-sm-row'>
+                                        <img src={`${image}/${item.image_akomodasi}`} alt={item.nama_akomodasi} className='admin-img-1'/>
+                                        <div className='data-title mt-2 mt-sm-0'>
+                                            <span>{item.nama_akomodasi}</span>
+                                        </div>
+                                    </div>
+                                    <div className='btn-edit-hapus mt-2 mt-sm-0'>
+                                        <button className='btn-admin-2 justify-content-center justify-content-sm-start px-2 py-2 mb-2 mb-sm-3' style={{backgroundColor: '#E7B10A'}} onClick={() => directEdit(item.id_akomodasi)}>
+                                            <AiFillEdit size={"100%"} className='button-icon-2'/>
+                                            <div className='mx-2'><span>Edit</span></div>
+                                        </button>
+                                        <button className='btn-admin-2 justify-content-center justify-content-sm-start px-2 py-2 mt-2 mt-sm-3' style={{backgroundColor: '#B31312'}} onClick={() => directDelete(item.id_akomodasi)}>
+                                            <AiFillDelete size={"100%"} className='button-icon-2'/>
+                                            <div className='mx-2'><span>Hapus</span></div>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className='btn-edit-hapus mt-2 mt-sm-0'>
-                            <button className='btn-admin-2 justify-content-center justify-content-sm-start px-2 py-2 mb-2 mb-sm-3' style={{backgroundColor: '#E7B10A'}} onClick={directEdit}>
-                                <AiFillEdit size={"100%"} className='button-icon-2'/>
-                                <div className='mx-2'><span>Edit</span></div>
-                            </button>
-                            <button className='btn-admin-2 justify-content-center justify-content-sm-start px-2 py-2 mt-2 mt-sm-3' style={{backgroundColor: '#B31312'}}>
-                                <AiFillDelete size={"100%"} className='button-icon-2'/>
-                                <div className='mx-2'><span>Hapus</span></div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                        ))
+                    )
+                }
             </div>
         </div>
     </div>

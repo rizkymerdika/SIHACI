@@ -57,6 +57,9 @@
 .event-pariwisata-card{
     border-radius: 30px;
 }
+.objek-wisata-card img{
+    height: 212px;
+}
 .card-img-top{
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
@@ -79,6 +82,9 @@
     .card-title{
         font-size: 1.2rem;
     }
+    .objek-wisata-card img{
+        height: 178px;
+    }
 }
 @media screen and (max-width:1023px) {
     
@@ -96,10 +102,16 @@
     .card-body{
         height: 95px;
     }
+    .objek-wisata-card img{
+        height: 176px;
+    }
 }
 @media screen and (max-width: 767px) {
     .slick-arrow{
         visibility: hidden;
+    }
+    .objek-wisata-card img{
+        height: 158px;
     }
 }
 @media screen and (max-width: 575px) {
@@ -116,10 +128,16 @@
         width: 20px;
         height: 20px;
     }
+    .objek-wisata-card img{
+        height: 229px;
+    }
 }
 @media screen and (max-width: 424px) {
     .card-title{
         font-size: 1.2rem;
+    }
+    .objek-wisata-card img{
+        height: 191px;
     }
 }
 @media screen and (max-width: 374px) {
@@ -131,5 +149,8 @@
     }
     .slider-lainnya{
         font-size: 1.1rem;
+    }
+    .objek-wisata-card img{
+        height: 148px;
     }
 }

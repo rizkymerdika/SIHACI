@@ -1,9 +1,9 @@
+import axios from "axios"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
 function FormHotelTambahLaporan() {
     const [tanggal, setTanggal] = useState('')
-    const [namaHotel, setNamaHotel] = useState('')
     const [klasifikasiHotel, setKlasifikasiHotel] = useState('')
     const [jumlahKamarDimiliki, setJumlahKamarDimiliki] = useState('')
     const [jumlahKamarTerjual, setJumlahKamarTerjual] = useState('')
@@ -19,8 +19,38 @@ function FormHotelTambahLaporan() {
     const [perempuan, setPerempuan] = useState('')
     const [lamaTinggal, setLamaTinggal] = useState('')
 
+    const api = import.meta.env.VITE_APP_API
+    const tambahLaporan = import.meta.env.VITE_API_TAMBAH_LAPORAN
+    const url = `${api}${tambahLaporan}`
+    const idUser = localStorage.getItem('id_user')
+
     function handleSelect(value) {
         setKlasifikasiHotel(value)
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault()
+      axios.post(url, {
+        "id_hotel": idUser,
+        "tanggal_laporan": tanggal,
+        "klasifikasi_hotel": klasifikasiHotel,
+        "jumlah_kamar_dimiliki": jumlahKamarDimiliki,
+        "jumlah_kamar_terjual": jumlahKamarTerjual,
+        "jumlah_wisatawan_lokal": lokal,
+        "jumlah_wisatawan_asia": asia,
+        "jumlah_wisatawan_afrika": afrika,
+        "jumlah_wisatawan_amerika_utara": amerikaUtara,
+        "jumlah_wisatawan_amerika_selatan": amerikaSelatan,
+        "jumlah_wisatawan_antartika": antartika,
+        "jumlah_wisatawan_eropa": eropa,
+        "jumlah_wisatawan_australia": australia,
+        "jumlah_karyawan_lakilaki": laki,
+        "jumlah_karyawan_perempuan": perempuan,
+        "rata_rata_lama_tinggal": lamaTinggal
+      })
+      .then((res) => {
+        alert(res.data.message)
+      })
     }
 
   return (
@@ -32,17 +62,11 @@ function FormHotelTambahLaporan() {
                   <div className="col-11 my-3">
                     <h2 className="fw-bold text-center my-0">Tambah Laporan</h2>
                   </div>
-                  <form className="col-11">
+                  <form className="col-11" onSubmit={handleSubmit}>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Tanggal</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
                         <input type="date" name="Tanggal" className="input-form-admin" value={tanggal} onChange={(e) => setTanggal(e.target.value)} required/>
-                      </div>
-                    </div>
-                    <div className="mb-3">
-                      <label className="label-form-admin fw-semibold">Nama Hotel</label>
-                      <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="text" name="Nama Hotel" className="input-form-admin" placeholder="Hotel Cianjur Cipanas" value={namaHotel} onChange={(e) => setNamaHotel(e.target.value)} required/>
                       </div>
                     </div>
                     <div className="mb-3">
@@ -126,7 +150,7 @@ function FormHotelTambahLaporan() {
                     <button type="submit" className="btn-form-admin fw-semibold mt-3 mb-3">Tambah</button>
                   </form>
                   <div className="col-11 text-center">
-                    <p>Kembali ke <Link to={'/hotel'}><span>Beranda</span></Link></p>
+                    <p>Kembali ke <Link to={`/hotel/${idUser}`}><span>Beranda</span></Link></p>
                   </div>
                 </div>
               </div>

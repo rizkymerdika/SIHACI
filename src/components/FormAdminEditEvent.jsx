@@ -1,9 +1,57 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Link, useParams } from "react-router-dom"
 
 function FormAdminEditEvent() {
+    const id_event = useParams()
+    const api = import.meta.env.VITE_APP_API;
+    const getEventById = import.meta.env.VITE_API_GET_EVENT_BY_ID
+    const updateEvent = import.meta.env.VITE_API_UPDATE_EVENT
+    const url1 = `${api}${getEventById}${id_event.id}`
+    const url2 = `${api}${updateEvent}${id_event.id}`
+
     const [namaEvent, setNamaEvent] = useState('')
+    const [banner, setBanner] = useState(null)
+    const [image, setImage] = useState(null)
     const [deskripsiEvent, setDeskripsiEvent] = useState('')
+
+    useEffect(() => {
+      fetch(url1)
+      .then((response) => {
+        return response.json()
+      })
+      .then((res) => {
+        setNamaEvent(res.data[0].nama_event)
+        setBanner(res.data[0].banner_event)
+        setImage(res.data[0].image_event)
+        setDeskripsiEvent(res.data[0].deskripsi_event)
+      })
+    }, [])
+
+    function handleEdit(e) {
+      e.preventDefault()
+      const formData = new FormData();
+      formData.append('nama_event', namaEvent)
+      if (banner != "") {
+        formData.append('banner_event', banner)
+      }
+      if(image != "") {
+        formData.append('image_event', image)
+      }
+      formData.append('deskripsi_event', deskripsiEvent)
+      fetch(url2, {
+        method: 'POST',
+        body: formData
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        alert("Update Data Event Berhasil");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Edit Data Event Gagal');
+      });
+    }
 
   return (
     <div className="bg-form-admin">
@@ -14,7 +62,7 @@ function FormAdminEditEvent() {
                   <div className="col-11 my-3">
                     <h2 className="fw-bold text-center my-0">Edit Event</h2>
                   </div>
-                  <form className="col-11">
+                  <form className="col-11" onSubmit={handleEdit}>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Nama Event</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
@@ -24,13 +72,13 @@ function FormAdminEditEvent() {
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Banner</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="file" name="Banner" className="input-form-admin" required/>
+                        <input type="file" name="Banner" className="input-form-admin" onChange={(e) => setBanner(e.target.files[0])}/>
                       </div>
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Image</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="file" name="Image" className="input-form-admin" required/>
+                        <input type="file" name="Image" className="input-form-admin" onChange={(e) => setImage(e.target.files[0])}/>
                       </div>
                     </div>
                     <div className="mb-3">

@@ -9,9 +9,12 @@ import Footer from '../components/footer'
 import WisataBuatan from '../components/WisataBuatan'
 import WisataBudaya from '../components/WisataBudaya'
 import React, { useEffect } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 function ObjekWisata() {
   useEffect(() => {
+    AOS.init()
     window.scrollTo(0, 0)
   }, [])
   
@@ -21,7 +24,7 @@ function ObjekWisata() {
         <title>Objek Wisata - Sistem Informasi Hayu Ameng ka Cianjur</title>
       </Helmet>
       <Nav/>
-      <Banner image={Slide3} title={"Ocean View"}/>
+      <Banner image={Slide3} title={"Objek Wisata"}/>
       <RekomendasiWisata/>
       <WisataAlam/>
       <WisataBuatan/>

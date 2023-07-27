@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Galeri1 from '../assets/galeri1.png'
 import Galeri2 from '../assets/galeri2.png'
 import Galeri3 from '../assets/galeri3.png'
@@ -9,7 +10,7 @@ import Galeri7 from '../assets/galeri7.png'
 function GaleriWisata() {
   return (
     <>
-        <div className="container mt-5">
+        <div className="container mt-5" data-aos='fade-right'>
             <div className="row">
                 <div className="col-12 text-center">
                     <h1 className="content-3-head fw-semibold">Galeri Wisata Cianjur</h1>

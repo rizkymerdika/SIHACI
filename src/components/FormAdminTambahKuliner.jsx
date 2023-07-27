@@ -2,13 +2,56 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 
 function FormAdminTambahKuliner(){
+  const api = import.meta.env.VITE_APP_API;
+  const kuliner = import.meta.env.VITE_API_SET_KULINER
+  const url = `${api}${kuliner}`
+
   const [namaKuliner, setNamaKuliner] = useState('')
   const [alamat, setAlamat] = useState('')
+  const [banner, setBanner] = useState(null)
+  const [image, setImage] = useState(null)
   const [deskripsiKuliner, setDeskripsiKuliner] = useState('')
   const [linkGoogleMaps, setLinkGoogleMaps] = useState('')
   const [linkInstagram, setLinkInstagram] = useState('')
   const [linkShopee, setLinkShopee] = useState('')
   const [linkTokopedia, setLinkTokopedia] = useState('')
+
+  function handleSubmit(e){
+    e.preventDefault()
+    const formData = new FormData();
+    formData.append('nama_kuliner', namaKuliner)
+    formData.append('alamat_kuliner', alamat)
+    formData.append('banner_kuliner', banner)
+    formData.append('image_kuliner', image)
+    formData.append('deskripsi_kuliner', deskripsiKuliner)
+    formData.append('link_gmaps', linkGoogleMaps)
+    formData.append('link_instagram', linkInstagram)
+    formData.append('link_shopee', linkShopee)
+    formData.append('link_tokopedia', linkTokopedia)
+    fetch(url, {
+      method: 'POST',
+      body: formData
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      alert("Tambah Data Kuliner Berhasil");
+    })
+    .catch((error) => {
+      console.log(error);
+      alert('Tambah Data Kuliner Gagal');
+    });
+
+    setNamaKuliner('')
+    setAlamat('')
+    setBanner('')
+    setImage('')
+    setDeskripsiKuliner('')
+    setLinkGoogleMaps('')
+    setLinkInstagram('')
+    setLinkShopee('')
+    setLinkTokopedia('')
+  }
 
   return (
     <div className="bg-form-admin">
@@ -19,7 +62,7 @@ function FormAdminTambahKuliner(){
                   <div className="col-11 my-3">
                     <h2 className="fw-bold text-center my-0">Tambah Kuliner</h2>
                   </div>
-                  <form className="col-11">
+                  <form className="col-11" onSubmit={handleSubmit}>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Nama Kuliner</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
@@ -35,13 +78,13 @@ function FormAdminTambahKuliner(){
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Banner</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="file" name="Banner" className="input-form-admin" required/>
+                        <input type="file" name="Banner" className="input-form-admin" onChange={(e) => setBanner(e.target.files[0])} required/>
                       </div>
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Image</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="file" name="Image" className="input-form-admin" required/>
+                        <input type="file" name="Image" className="input-form-admin" onChange={(e) => setImage(e.target.files[0])} required/>
                       </div>
                     </div>
                     <div className="mb-3">

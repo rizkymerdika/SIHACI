@@ -11,7 +11,7 @@ function AdminEditAkomodasi() {
   return (
     <>
         <Helmet>
-            <title>Edit Objek Wisata - Sistem Informasi Hayu Ameng ka Cianjur</title>
+            <title>Edit Akomodasi - Sistem Informasi Hayu Ameng ka Cianjur</title>
         </Helmet>
         <FormAdminEditAkomodasi/>
     </>

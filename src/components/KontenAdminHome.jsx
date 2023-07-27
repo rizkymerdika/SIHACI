@@ -1,6 +1,61 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
 function KontenAdminHome() {
+    const api = import.meta.env.VITE_APP_API;
+    const oW = import.meta.env.VITE_API_GET_OW
+    const akom = import.meta.env.VITE_API_GET_AKOMODASI
+    const kuli = import.meta.env.VITE_API_GET_KULINER
+    const trav = import.meta.env.VITE_API_GET_TRAVEL
+    const eve = import.meta.env.VITE_API_GET_EVENT
+    const hot = import.meta.env.VITE_API_GET_HOTEL
+    const urlOw = `${api}${oW}`
+    const urlAkomodasi = `${api}${akom}`
+    const urlKuliner = `${api}${kuli}`
+    const urlTravel = `${api}${trav}`
+    const urlEvent = `${api}${eve}`
+    const urlHotel = `${api}${hot}`
+
+    const [objekWisata, setObjekWisata] = useState('')
+    const [akomodasi, setAkomodasi] = useState('')
+    const [kuliner, setKuliner] = useState('')
+    const [travel, setTravel] = useState('')
+    const [event, setEvent] = useState('')
+    const [hotel, setHotel] = useState('')
+
+    useEffect(() => {
+      axios(urlOw)
+      .then((res) => {
+        setObjekWisata(res.data.data)
+      })
+
+      axios(urlAkomodasi)
+      .then((res) => {
+        setAkomodasi(res.data.data)
+      })
+
+      axios(urlKuliner)
+      .then((res) => {
+        setKuliner(res.data.data)
+      })
+
+      axios(urlTravel)
+      .then((res) => {
+        setTravel(res.data.data)
+      })
+
+      axios(urlEvent)
+      .then((res) => {
+        setEvent(res.data.data)
+      })
+
+      axios(urlHotel)
+      .then((res) => {
+        setHotel(res.data.data)
+      })
+    }, [])
+    
+
   return (
     <div className='mt-3'>
         <div className='container'>
@@ -17,7 +72,7 @@ function KontenAdminHome() {
                             <span>: </span>
                         </div>
                         <div>
-                            <span title='jumlah-angka'>100</span>
+                            <span title='jumlah-angka'>{objekWisata.length}</span>
                         </div>
                     </div>
                 </div>
@@ -28,7 +83,7 @@ function KontenAdminHome() {
                             <span>: </span>
                         </div>
                         <div>
-                            <span title='jumlah-angka'>100</span>
+                            <span title='jumlah-angka'>{akomodasi.length}</span>
                         </div>
                     </div>
                 </div>
@@ -39,7 +94,7 @@ function KontenAdminHome() {
                             <span>: </span>
                         </div>
                         <div>
-                            <span title='jumlah-angka'>100</span>
+                            <span title='jumlah-angka'>{kuliner.length}</span>
                         </div>
                     </div>
                 </div>
@@ -50,7 +105,7 @@ function KontenAdminHome() {
                             <span>: </span>
                         </div>
                         <div>
-                            <span title='jumlah-angka'>100</span>
+                            <span title='jumlah-angka'>{travel.length}</span>
                         </div>
                     </div>
                 </div>
@@ -61,7 +116,7 @@ function KontenAdminHome() {
                             <span>: </span>
                         </div>
                         <div>
-                            <span title='jumlah-angka'>100</span>
+                            <span title='jumlah-angka'>{event.length}</span>
                         </div>
                     </div>
                 </div>
@@ -72,7 +127,7 @@ function KontenAdminHome() {
                             <span>: </span>
                         </div>
                         <div>
-                            <span title='jumlah-angka'>100</span>
+                            <span title='jumlah-angka'>{hotel.length}</span>
                         </div>
                     </div>
                 </div>

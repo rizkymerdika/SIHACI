@@ -2,10 +2,17 @@ import {BsFacebook, BsYoutube} from 'react-icons/bs'
 import {RiInstagramFill} from 'react-icons/ri'
 import {IoLogoTiktok} from 'react-icons/io5'
 import { Link } from 'react-router-dom'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from 'react'
 
 function footer() {
+    useEffect(() => {
+        AOS.init()
+      }, [])
+
   return (
-    <div className='foot mt-5'>
+    <div className='foot mt-5' data-aos='fade-up'>
         <footer className="container">
             <div className="row">
                 <div className="col-sm-6 col-lg-3 mt-4">

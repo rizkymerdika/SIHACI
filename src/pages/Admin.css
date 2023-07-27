@@ -213,6 +213,11 @@
 .jumlah-data-wrapper span[title= 'jumlah-angka']{
     color: #576CBC;
 }
+.belum-ada-laporan{
+    padding: 115px 0;
+    text-align: center;
+    color: #A5D7E8;
+}
 
 /* Responsive */
 @media screen and (max-width:1399px) {

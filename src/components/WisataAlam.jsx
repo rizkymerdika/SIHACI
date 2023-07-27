@@ -4,11 +4,29 @@ import Wisataalam3 from '../assets/wisataalam3.png'
 import Wisataalam4 from '../assets/wisataalam4.png'
 import Wisataalam5 from '../assets/wisataalam5.png'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 function WisataAlam() {
+    useEffect(() => {
+        axios(url)
+        .then((res) => {
+            setObjekWisata(res.data.data)
+        })
+    }, [])
+
+    const api = import.meta.env.VITE_APP_API;
+    const getOw = import.meta.env.VITE_API_GET_OW
+    const getImage = import.meta.env.VITE_API_GET_IMAGE_WISATA
+    const image = `${api}${getImage}`;
+    const url = `${api}${getOw}`
+
+    const [objekWisata, setObjekWisata] = useState([])
+
     const settings = {
         dots: false,
         infinite: false,
+        draggable: false,
         speed: 1000,
         slidesToShow: 4,
         slidesToScroll: 4,
@@ -27,7 +45,8 @@ function WisataAlam() {
                     centerMode: true,
                     infinite: true,
                     slidesToShow: 2,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    draggable: true
                 }
             },
             {
@@ -37,86 +56,35 @@ function WisataAlam() {
                     centerMode: true,
                     infinite: true,
                     slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    draggable: true
                 }
             }
         ]
     }
 
   return (
-    <div className="mt-5">
+    <div className="mt-5" data-aos='fade-up'>
         <h1 className="content-2-head fw-semibold text-center">Wisata Alam</h1>
-        <div className="wisata-slider">
+        <div className="wisata-slider" data-aos='fade-up'>
             <div className="container pt-3">
                 <div className="row mt-3">
                     <div className="col-12">
                         <Slider {...settings}>
-                        <div>
-                            <Link to="/objekwisata/wisataalam/detailwisata">
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Wisataalam2} alt="Kebun Raya Cibodas" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Kebun Raya Cibodas</h5>
+                        {
+                            objekWisata.filter((item, index) => item.kategori_wisata == 'Wisata Alam' && index < 12).map((item, index) => (
+                                <div key={index}>
+                                    <Link to={`/objekwisata/wisataalam/detailwisata/${item.id_wisata}`}>
+                                        <div className="card objek-wisata-card m-auto">
+                                            <img src={`${image}/${item.image_wisata}`} alt={item.nama_wisata} className="card-img-top" />
+                                            <div className="card-body">
+                                                <h5 className="card-title my-0 py-3 text-center fw-bold">{item.nama_wisata}</h5>
+                                            </div>
+                                        </div>
+                                    </Link>
                                 </div>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Wisataalam3} alt="Arum Jeram Cikundul" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Arum Jeram Cikundul</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Wisataalam4} alt="Curug Luhur" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Curug Luhur</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Wisataalam5} alt="Talaga Biru" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Talaga Biru</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Wisataalam5} alt="Talaga Biru" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Talaga Biru</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Wisataalam5} alt="Talaga Biru" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Talaga Biru</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Wisataalam5} alt="Talaga Biru" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Talaga Biru</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Wisataalam5} alt="Talaga Biru" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Talaga Biru</h5>
-                                </div>
-                            </div>
-                        </div>
+                            ))
+                        }
                         </Slider>
                     </div>
                 </div>

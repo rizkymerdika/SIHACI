@@ -23,11 +23,11 @@ function Nav() {
                     <div className="col-9 nav-list-menu">
                         <div className='d-flex flex-row text-center'>
                             <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/">Home</Link></li>
-                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3  ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/objekwisata">Objek Wisata</Link></li>
-                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3  ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/akomodasi">Akomodasi</Link></li>
-                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3  ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/kuliner">Kuliner</Link></li>
-                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3  ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/travel">Travel</Link></li>
-                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3  ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/event">Event</Link></li>
+                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/objekwisata">Objek Wisata</Link></li>
+                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/akomodasi">Akomodasi</Link></li>
+                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/kuliner">Kuliner</Link></li>
+                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/travel">Travel</Link></li>
+                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/event">Event</Link></li>
                             <li className='nav-menu d-flex align-items-center justify-content-end flex-fill ms-xxl-4 fw-semibold'>
                                 <form className='form' onSubmit={handleSearch}>
                                     <div className='d-flex align-items-center input-wrapper py-1 w-auto'>

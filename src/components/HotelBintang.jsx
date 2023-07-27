@@ -1,11 +1,29 @@
 import Slider from "react-slick"
 import Hotelbintang1 from "../assets/hotelbintang1.png"
 import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 function HotelBintang() {
+    useEffect(() => {
+        axios(url)
+        .then((res) => {
+            setAkomodasi(res.data.data)
+        })
+    }, [])
+
+    const api = import.meta.env.VITE_APP_API;
+    const getAkomodasi = import.meta.env.VITE_API_GET_AKOMODASI
+    const getImage = import.meta.env.VITE_API_GET_IMAGE_AKOMODASI
+    const image = `${api}${getImage}`;
+    const url = `${api}${getAkomodasi}`
+
+    const [akomodasi, setAkomodasi] = useState([])
+
     const settings = {
         dots: false,
         infinite: false,
+        draggable: false,
         speed: 1000,
         slidesToShow: 4,
         slidesToScroll: 4,
@@ -24,7 +42,8 @@ function HotelBintang() {
                     centerMode: true,
                     infinite: true,
                     slidesToShow: 2,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    draggable: true
                 }
             },
             {
@@ -34,86 +53,35 @@ function HotelBintang() {
                     centerMode: true,
                     infinite: true,
                     slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    draggable: true
                 }
             }
         ]
     }
 
   return (
-    <div className="mt-5">
+    <div className="mt-5" data-aos='fade-up'>
         <h1 className="content-2-head fw-semibold text-center">Hotel Bintang</h1>
-        <div className="wisata-slider">
+        <div className="wisata-slider" data-aos='fade-up'>
             <div className="container pt-3">
                 <div className="row mt-3">
                     <div className="col-12">
                         <Slider {...settings}>
-                        <div>
-                            <Link to="/akomodasi/hotelbintang/detailakomodasi">
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Hotelbintang1} alt="Hotel Cianjur Cipanas" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Hotel Cianjur Cipanas</h5>
-                                </div>
-                            </div>
-                            </Link>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Hotelbintang1} alt="Hotel Cianjur Cipanas" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Hotel Cianjur Cipanas</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Hotelbintang1} alt="Hotel Cianjur Cipanas" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Hotel Cianjur Cipanas</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Hotelbintang1} alt="Hotel Cianjur Cipanas" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Hotel Cianjur Cipanas</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Hotelbintang1} alt="Hotel Cianjur Cipanas" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Hotel Cianjur Cipanas</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Hotelbintang1} alt="Hotel Cianjur Cipanas" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Hotel Cianjur Cipanas</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Hotelbintang1} alt="Hotel Cianjur Cipanas" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Hotel Cianjur Cipanas</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="card objek-wisata-card m-auto">
-                                <img src={Hotelbintang1} alt="Hotel Cianjur Cipanas" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title my-0 py-3 text-center fw-bold">Hotel Cianjur Cipanas</h5>
-                                </div>
-                            </div>
-                        </div>
+                            {  
+                                akomodasi.filter((item, index) => item.kategori_hotel == 'Hotel Bintang' && index < 12).map((item, index) => (
+                                    <div key={index}>
+                                        <Link to={`/akomodasi/hotelbintang/detailakomodasi/${item.id_akomodasi}`}>
+                                            <div className="card objek-wisata-card m-auto">
+                                                <img src={`${image}/${item.image_akomodasi}`} alt={item.nama_akomodasi} className="card-img-top" />
+                                                <div className="card-body">
+                                                    <h5 className="card-title my-0 py-3 text-center fw-bold">{item.nama_akomodasi}</h5>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                ))
+                            }
                         </Slider>
                     </div>
                 </div>

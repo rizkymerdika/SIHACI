@@ -5,47 +5,111 @@ import Map from "./Map"
 import Instagram from "../assets/logos_instagram.png"
 import Shopee from "../assets/shopee.png"
 import Tokopedia from "../assets/tokopedia.png"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { useParams } from "react-router-dom"
 
 function KontenKuliner() {
+    useEffect(() => {
+        axios(url)
+        .then((res) => {
+            setKuliner(res.data.data)
+        })
+    }, [])
+
+    const id_kuliner = useParams()
+    const api = import.meta.env.VITE_APP_API
+    const getKuliner = import.meta.env.VITE_API_GET_KULINER_BY_ID
+    const getImage = import.meta.env.VITE_API_GET_IMAGE_KULINER
+    const image = `${api}${getImage}`;
+    const url = `${api}${getKuliner}${id_kuliner.id}`
+
+    const [kuliner, setKuliner] = useState([])
+
   return (
     <>
-        <Banner image={Banner2} title={"Tauco"}/>
-        <div className="mt-5">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 text-center">
-                        <h1 className="content-2-head fw-semibold">Tauco Cap Meong</h1>
-                    </div>
-                </div>
-                <div className="row py-4 py-sm-5 px-3 konten-outline">
-                    <div className="col-lg-6 order-2 order-lg-1 mt-4 mt-lg-0">
-                        <p className='my-0 content-2-text'>Tauco Cap Meong adalah merek tauco yang terkenal dan memiliki keunikan yang khas. Keunikan Tauco Cap Meong terletak pada cita rasanya yang unik dan berbeda dari tauco pada umumnya. Tauco Cap Meong memiliki rasa yang lebih kuat, pedas, dan sedikit manis. Bumbu-bumbu pilihan yang digunakan dalam proses pembuatannya memberikan kelezatan dan keharmonisan cita rasa yang tak tertandingi. Selain itu, keunikan lainnya adalah aroma yang khas dan menggugah selera. Tauco Cap Meong juga dikemas dalam botol dengan desain yang menarik, menambah daya tarik visual produk ini. Kelezatan dan keunikan Tauco Cap Meong menjadikannya pilihan yang populer bagi penggemar makanan Indonesia dan pecinta kuliner yang mencari rasa autentik dengan sentuhan pedas yang khas.</p>
-                        <p className='my-0 mt-4 content-2-text'>Jl. Raya Cipanas Cianjur Km 5 Desa Cijedil Desa Cijedil Kecamatan Cugenang Kabupaten Cianjur, 43252</p>
-                        <div className="link-account-contacts d-flex justify-content-start mt-4">
-                            <div>
-                                <a href="#">
-                                    <img src={Instagram} alt="Instagram" />
-                                </a>
+        {
+            kuliner.map((item, index) => (
+                <Banner image={`${image}/${item.banner_kuliner}`} title={item.nama_kuliner} key={index}/>
+            ))
+        }
+        {
+            kuliner.map((item, index) => (
+                <div className="mt-5" key={index} data-aos="fade-up">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12 text-center">
+                                <h1 className="content-2-head fw-semibold">{item.nama_kuliner}</h1>
                             </div>
-                            <div>
-                                <a href="#">
-                                    <img src={Shopee} alt="Shopee" />
-                                </a>
+                        </div>
+                        <div className="row py-4 py-sm-5 px-3 konten-outline">
+                            <div className="col-lg-6 order-2 order-lg-1 mt-4 mt-lg-0">
+                                <p className='my-0 content-2-text'>{item.deskripsi_kuliner}</p>
+                                <p className='my-0 mt-4 content-2-text'>{item.alamat_kuliner}</p>
+                                <div className="link-account-contacts d-flex justify-content-start mt-4">
+                                    {
+                                        item.link_instagram ? (
+                                            <div>
+                                                <a href={item.link_instagram} target="_blank">
+                                                    <img src={Instagram} alt="Instagram" />
+                                                </a>
+                                            </div>
+                                        ):
+                                        (
+                                            <div style={{display: 'none'}}>
+                                                <a href="#">
+                                                    <img src={Instagram} alt="Instagram" />
+                                                </a>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        item.link_shopee ? (
+                                            <div>
+                                                <a href={item.link_shopee} target="_blank">
+                                                    <img src={Shopee} alt="Shopee" />
+                                                </a>
+                                            </div>
+                                        ):
+                                        (
+                                            <div style={{display: 'none'}}>
+                                                <a href="#">
+                                                    <img src={Shopee} alt="Shopee" />
+                                                </a>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        item.link_tokopedia ? (
+                                            <div>
+                                                <a href={item.link_tokopedia} target="_blank">
+                                                    <img src={Tokopedia} alt="Tokopedia" />
+                                                </a>
+                                            </div>
+                                        ):
+                                        (
+                                            <div style={{display: 'none'}}>
+                                                <a href="#">
+                                                    <img src={Tokopedia} alt="Tokopedia" />
+                                                </a>
+                                            </div>
+                                        )
+                                    }
+                                </div>
                             </div>
-                            <div>
-                                <a href="#">
-                                    <img src={Tokopedia} alt="Tokopedia" />
-                                </a>
+                            <div className="col-lg-6 order-1 order-lg-2 d-block text-center">
+                                <img src={`${image}/${item.image_kuliner}`} alt={item.nama_kuliner} width={"100%"} className="img-wisata-outline"/>
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-6 order-1 order-lg-2 d-block text-center">
-                        <img src={Kuliner14} alt='Tauco Cap meong' width={"100%"} className="img-wisata-outline"/>
-                    </div>
                 </div>
-            </div>
-        </div>
-        <Map mapSrc={"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.7354833436857!2d107.09990067396065!3d-6.801999966524339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6852a011bacd53%3A0xda93cafd072b23fb!2sToko%20Tauco%20Cap%20Meong!5e0!3m2!1sen!2sid!4v1684852599153!5m2!1sen!2sid"}/>
+            ))
+        }
+        {
+            kuliner.map((item, index) => (
+                <Map mapSrc={item.link_gmaps} key={index}/>
+            ))
+        }
     </>
   )
 }

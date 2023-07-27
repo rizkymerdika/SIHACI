@@ -1,10 +1,18 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {MdTravelExplore} from 'react-icons/md'
 import {IoHomeSharp} from 'react-icons/io5'
 import {BiLogOut} from 'react-icons/bi'
 import {RiLockPasswordLine} from 'react-icons/ri'
 
 function Sidebar2({style1, style2}) {
+    const navigate = useNavigate()
+    const getIdUser = localStorage.getItem('id_user')
+
+    function handleLogout() {
+        localStorage.clear()
+        navigate('/login')
+    }
+
   return (
     <ul className='navbar-nav sidebar ps-0' style={{background: '#19376D'}}>
         <li>
@@ -15,18 +23,18 @@ function Sidebar2({style1, style2}) {
         </li>
         <li><hr className='my-1'/></li>
         <li className='nav-item'>
-            <Link to={"/hotel"} className='nav-link d-flex flex-column flex-lg-row align-items-center' style={{color: style1}}>
+            <Link to={`/hotel/${getIdUser}`} className='nav-link d-flex flex-column flex-lg-row align-items-center' style={{color: style1}}>
                 <IoHomeSharp size={'100%'} className='sidebar-icon-2'/>
                 <div className='ms-lg-3'><span className='sidebar-menu'>Beranda</span></div>
             </Link>
         </li>
         <li className='nav-item'>
-            <Link to={"/hotel/gantipassword"} className='nav-link d-flex flex-column flex-lg-row align-items-center' style={{color: style2}}>
+            <Link to={`/hotel/${getIdUser}/gantipassword`} className='nav-link d-flex flex-column flex-lg-row align-items-center' style={{color: style2}}>
                 <RiLockPasswordLine size={"100%"} className='sidebar-icon-2'/>
                 <div className='ms-lg-3'><span className='sidebar-menu'>Ganti Password</span></div>
             </Link>
         </li>
-        <li className='nav-item'>
+        <li className='nav-item' onClick={handleLogout}>
             <Link className='nav-link d-flex flex-column flex-lg-row align-items-center'>
                 <BiLogOut size={"100%"} className='sidebar-icon-2'/>
                 <div className='ms-lg-3'><span className='sidebar-menu'>Keluar</span></div>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {IoHomeSharp, IoLocationSharp} from 'react-icons/io5'
 import {MdTravelExplore} from 'react-icons/md'
 import {FaHotel} from 'react-icons/fa'
@@ -9,6 +9,13 @@ import {BiLogOut} from 'react-icons/bi'
 import {RiLockPasswordLine} from 'react-icons/ri'
 
 function Sidebar({style1, style2, style3, style4, style5, style6, style7, style8}) {
+    const navigate = useNavigate()
+
+    function handleLogout() {
+        localStorage.clear()
+        navigate('/login')
+    }
+
   return (
     <ul className='navbar-nav sidebar ps-0' style={{background: '#0B2447'}}>
         <li>
@@ -73,7 +80,7 @@ function Sidebar({style1, style2, style3, style4, style5, style6, style7, style8
                 <div className='ms-lg-3'><span className='sidebar-menu'>Ganti Password</span></div>
             </Link>
         </li>
-        <li className='nav-item'>
+        <li className='nav-item' onClick={handleLogout}>
             <Link className='nav-link d-flex flex-column flex-lg-row align-items-center'>
                 <BiLogOut size={"100%"} className='sidebar-icon-2'/>
                 <div className='ms-lg-3'><span className='sidebar-menu'>Keluar</span></div>

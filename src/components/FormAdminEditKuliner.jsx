@@ -1,14 +1,71 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Link, useParams } from "react-router-dom"
 
 function FormAdminEditKuliner() {
+    const id_kuliner = useParams()
+    const api = import.meta.env.VITE_APP_API;
+    const getKulinerById = import.meta.env.VITE_API_GET_KULINER_BY_ID
+    const updateKuliner = import.meta.env.VITE_API_UPDATE_KULINER
+    const url1 = `${api}${getKulinerById}${id_kuliner.id}`
+    const url2 = `${api}${updateKuliner}${id_kuliner.id}`
+
     const [namaKuliner, setNamaKuliner] = useState('')
     const [alamat, setAlamat] = useState('')
+    const [banner, setBanner] = useState(null)
+    const [image, setImage] = useState(null)
     const [deskripsiKuliner, setDeskripsiKuliner] = useState('')
     const [linkGoogleMaps, setLinkGoogleMaps] = useState('')
     const [linkInstagram, setLinkInstagram] = useState('')
     const [linkShopee, setLinkShopee] = useState('')
     const [linkTokopedia, setLinkTokopedia] = useState('')
+
+    useEffect(() => {
+      fetch(url1)
+      .then((response) => {
+        return response.json()
+      })
+      .then((res) => {
+        setNamaKuliner(res.data[0].nama_kuliner)
+        setAlamat(res.data[0].alamat_kuliner)
+        setBanner(res.data[0].banner_kuliner)
+        setImage(res.data[0].image_kuliner)
+        setDeskripsiKuliner(res.data[0].deskripsi_kuliner)
+        setLinkGoogleMaps(res.data[0].link_gmaps)
+        setLinkInstagram(res.data[0].link_instagram)
+        setLinkShopee(res.data[0].link_shopee)
+        setLinkTokopedia(res.data[0].link_tokopedia)
+      })
+    }, [])
+
+    function handleEdit(e) {
+      e.preventDefault()
+      const formData = new FormData();
+      formData.append('nama_kuliner', namaKuliner)
+      formData.append('alamat_kuliner', alamat)
+      if (banner != "") {
+        formData.append('banner_kuliner', banner)
+      }
+      if(image != "") {
+        formData.append('image_kuliner', image)
+      }
+      formData.append('deskripsi_kuliner', deskripsiKuliner)
+      formData.append('link_gmaps', linkGoogleMaps)
+      formData.append('link_instagram', linkInstagram)
+      formData.append('link_shopee', linkShopee)
+      formData.append('link_tokopedia', linkTokopedia)
+      fetch(url2, {
+        method: 'POST',
+        body: formData
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        alert("Update Data Kuliner Berhasil");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Edit Data Kuliner Gagal');
+      });
+    }
 
   return (
     <div className="bg-form-admin">
@@ -19,7 +76,7 @@ function FormAdminEditKuliner() {
                   <div className="col-11 my-3">
                     <h2 className="fw-bold text-center my-0">Edit Kuliner</h2>
                   </div>
-                  <form className="col-11">
+                  <form className="col-11" onSubmit={handleEdit}>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Nama Kuliner</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
@@ -35,13 +92,13 @@ function FormAdminEditKuliner() {
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Banner</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="file" name="Banner" className="input-form-admin" required/>
+                        <input type="file" name="Banner" className="input-form-admin"  onChange={(e) => setBanner(e.target.files[0])}/>
                       </div>
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Image</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="file" name="Image" className="input-form-admin" required/>
+                        <input type="file" name="Image" className="input-form-admin"  onChange={(e) => setImage(e.target.files[0])}/>
                       </div>
                     </div>
                     <div className="mb-3">

@@ -4,9 +4,15 @@ import NavAdmin from "../components/NavAdmin"
 import KontenAdminHome from "../components/KontenAdminHome"
 import { Helmet } from "react-helmet"
 import React, { useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
 
 function AdminHome() {
+  const navigate = useNavigate()
+
   useEffect(() => {
+    if (localStorage.getItem('id_user') == null) {
+      navigate('/login')
+    }
     window.scrollTo(0, 0)
   }, [])
   

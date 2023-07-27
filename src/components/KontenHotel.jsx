@@ -7,59 +7,181 @@ import Facebook from "../assets/logos_facebook.png"
 import Instagram from "../assets/logos_instagram.png"
 import Twitter from "../assets/twitter.png"
 import Youtube from "../assets/youtube.png"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import CurrencyFormat from "react-currency-format"
+import { useParams } from "react-router-dom"
 
 function KontenHotel() {
+    useEffect(() => {
+        axios(url)
+        .then((res) => {
+            setAkomodasi(res.data.data)
+        })
+    }, [])
+
+    const id_akomodasi = useParams()
+    const api = import.meta.env.VITE_APP_API;
+    const getAkomodasi = import.meta.env.VITE_API_GET_AKOMODASI_BY_ID
+    const getImage = import.meta.env.VITE_API_GET_IMAGE_AKOMODASI
+    const image = `${api}${getImage}`;
+    const url = `${api}${getAkomodasi}${id_akomodasi.id}`
+
+    const [akomodasi, setAkomodasi] = useState([])
+
   return (
     <>
-        <Banner image={Banner3} title={"Hotel Cianjur Cipanas"}/>
-        <div className="mt-5">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 text-center">
-                        <h1 className="content-2-head fw-semibold">Hotel Cianjur Cipanas</h1>
-                    </div>
-                </div>
-                <div className="row py-4 py-sm-5 px-3 konten-outline">
-                    <div className="col-lg-6 order-2 order-lg-1 mt-4 mt-lg-0">
-                        <p className='my-0 content-2-text'>Hotel yang luas ini berjarak 7 km dari Taman Bunga Nusantara dan dapat diakses dengan berjalan kaki 10 menit dari Istana Cipanas yang dibangun pada abad ke-18. Kamar sederhana dan suite menawarkan Wi-Fi gratis, TV layar datar, kulkas mini, serta fasilitas untuk membuat teh dan kopi. Juga tersedia rumah berlantai 2 dan berdinding kayu dengan ruang tamu. Parkir gratis. Fasilitas lainnya meliputi kafe dan restoran, serta kolam renang indoor berpemanas, pusat kebugaran, dan sauna. Juga terdapat lapangan bulu tangkis, tenis meja, jalur joging, dan taman bermain. Ruang serbaguna tersedia.</p>
-                        <p className='my-0 mt-4 content-2-text'>Harga per Malam : Rp.350.000 - Rp.550.000</p>
-                        <p className='my-0 mt-4 content-2-text'>Jl. Raya Cipanas No.KM. 81, RW.3, Gadog, Kec. Pacet, Kabupaten Cianjur, Jawa Barat 43253</p>
-                        <span className="content-2-text">(0263) 516480</span>
-                        <div className="link-account-contacts d-flex justify-content-start mt-4">
-                            <div>
-                                <a href="#">
-                                    <img src={Website} alt="Website" />
-                                </a>
+        {
+            akomodasi.map((item, index) => (
+                <Banner image={`${image}/${item.banner_akomodasi}`} title={item.nama_akomodasi} key={index}/>
+            ))
+        }
+        {
+            akomodasi.map((item, index) => (
+                <div className="mt-5" key={index} data-aos="fade-up">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12 text-center">
+                                <h1 className="content-2-head fw-semibold">{item.nama_akomodasi}</h1>
                             </div>
-                            <div>
-                                <a href="#">
-                                    <img src={Facebook} alt="Facebook" />
-                                </a>
+                        </div>
+                        <div className="row py-4 py-sm-5 px-3 konten-outline">
+                            <div className="col-lg-6 order-2 order-lg-1 mt-4 mt-lg-0">
+                                <p className='my-0 content-2-text'>{item.deskripsi_akomodasi}</p>
+                                <p className='my-0 mt-4 content-2-text'>Harga per Malam : <CurrencyFormat value={item.harga_terendah} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'}/> - <CurrencyFormat value={item.harga_tertinggi} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'}/></p>
+                                <p className='my-0 mt-4 content-2-text'>{item.alamat_akomodasi}</p>
+                                <span className="content-2-text">{item.nomor_telepon}</span>
+                                <div className="link-account-contacts d-flex justify-content-start mt-4">
+                                    {
+                                        item.link_website ? (
+                                            <div>
+                                                <a href={item.link_website} target="_blank">
+                                                    <img src={Website} alt="Website" />
+                                                </a>
+                                            </div>
+                                        ):
+                                        (
+                                            <div style={{display: 'none'}}>
+                                                <a href="#">
+                                                    <img src={Website} alt="Website" />
+                                                </a>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        item.link_facebook ? (
+                                            <div>
+                                                <a href={item.link_facebook} target="_blank">
+                                                    <img src={Facebook} alt="Facebook" />
+                                                </a>
+                                            </div>
+                                        ):
+                                        (
+                                            <div style={{display: 'none'}}>
+                                                <a href="#">
+                                                    <img src={Facebook} alt="Facebook" />
+                                                </a>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        item.link_instagram ? (
+                                            <div>
+                                                <a href={item.link_instagram} target="_blank">
+                                                    <img src={Instagram} alt="Instagram" />
+                                                </a>
+                                            </div>
+                                        ):
+                                        (
+                                            <div style={{display: 'none'}}>
+                                                <a href="#">
+                                                    <img src={Instagram} alt="Instagram" />
+                                                </a>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        item.link_twitter ? (
+                                            <div>
+                                                <a href={item.link_twitter} target="_blank">
+                                                    <img src={Twitter} alt="Twitter" />
+                                                </a>
+                                            </div>
+                                        ):
+                                        (
+                                            <div style={{display: 'none'}}>
+                                                <a href="#">
+                                                    <img src={Twitter} alt="Twitter" />
+                                                </a>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        item.link_youtube ? (
+                                            <div>
+                                                <a href={item.link_youtube} target="_blank">
+                                                    <img src={Youtube} alt="Youtube" />
+                                                </a>
+                                            </div>
+                                        ):
+                                        (
+                                            <div style={{display: 'none'}}>
+                                                <a href="#">
+                                                    <img src={Youtube} alt="Youtube" />
+                                                </a>
+                                            </div>
+                                        )
+                                    }
+                                </div>
                             </div>
-                            <div>
-                                <a href="#">
-                                    <img src={Instagram} alt="Instagram" />
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#">
-                                    <img src={Twitter} alt="Twitter" />
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#">
-                                    <img src={Youtube} alt="Youtube" />
-                                </a>
+                            <div className="col-lg-6 order-1 order-lg-2 d-block text-center">
+                                <img src={`${image}/${item.image_akomodasi}`} alt={item.nama_akomodasi} width={"100%"} className="img-wisata-outline"/>
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-6 order-1 order-lg-2 d-block text-center">
-                        <img src={Hotel1} alt='Hotel Cianjur Cipanas' width={"100%"} className="img-wisata-outline"/>
-                    </div>
                 </div>
-            </div>
-        </div>
-        <Map mapSrc={"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.276008990691!2d107.0403521739597!3d-6.736144765862275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69b3af6f8e6b5b%3A0x4fa89d78fb2dc43d!2sHotel%20Cianjur%20Cipanas!5e0!3m2!1sen!2sid!4v1684853622891!5m2!1sen!2sid"}/>
+            ))
+        }
+        {
+            akomodasi.map((item, index) => (
+                <Map mapSrc={item.link_gmaps} key={index}/>
+            ))
+        }
+        {/* <LineChart
+            data={{
+                labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni"],
+                datasets: [
+                    {
+                    data: [
+                        Math.random() * 100,
+                        Math.random() * 100,
+                        Math.random() * 100,
+                        Math.random() * 100,
+                        Math.random() * 100,
+                        Math.random() * 100
+                    ]
+                    }
+                ]
+                }}
+            width={Dimensions.get("window").width - 50} // from react-native
+            height={220}
+            yAxisLabel={"Rp"}
+            chartConfig={{
+            backgroundColor: "red",
+            backgroundGradientFrom: "red",
+            backgroundGradientTo: "red",
+            decimalPlaces: 2, // optional, defaults to 2dp
+            color: (opacity = 1) => `white`,
+            labelColor: (opacity = 1) => `white`,
+            style: {
+                borderRadius: 16
+            }
+            }}
+            style={{
+                marginVertical: 8,
+                borderRadius: 16
+            }}
+        /> */}
     </>
   )
 }
