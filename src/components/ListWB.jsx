@@ -62,7 +62,7 @@ function ListWB() {
         <div className="row flex-wrap">
             { 
                 wisata.map((item,index) => (
-                    <div className="col-sm-6 mb-5" key={index}>
+                    <div className="col-sm-6 col-lg-4 mb-5" key={index}>
                         <Link to={`/objekwisata/wisatabuatan/detailwisata/${item.id_wisata}`}>
                             <div className="card travel-card border-0 m-auto">
                                 <img src={`${image}/${item.image_wisata}`} alt={item.nama_wisata} className="img-travel-outline" />
@@ -88,7 +88,15 @@ function ListWB() {
                 }
                 {
                     Array.from({ length: wisataCount }, (_, index) => (
-                        <li className="page-item"><a className="page-link" onClick={() => handleClick(index+1)} href="javascript:;" key={index}>{index+1}</a></li>
+                        <li className="page-item" key={index}>
+                            {
+                                pageAfter === index+1 ? (
+                                    <a className="page-link bg-primary text-white" onClick={() => handleClick(index+1)} href="javascript:;" >{index+1}</a>
+                                ) : (
+                                    <a className="page-link" onClick={() => handleClick(index+1)} href="javascript:;" key={index}>{index+1}</a>
+                                )
+                            }
+                        </li>
                     ))
                 }
                 {

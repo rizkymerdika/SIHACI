@@ -4,6 +4,7 @@ import Event5 from "../assets/event5.png"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useParams } from "react-router-dom"
+import { Helmet } from "react-helmet"
 
 function KontenEvent() {
     useEffect(() => {
@@ -26,7 +27,12 @@ function KontenEvent() {
     <>
         {
             event.map((item, index) => (
-                <Banner image={`${image}/${item.banner_event}`} key={index}/>
+                <>
+                    <Helmet>
+                        <title>{item.nama_event} - Sistem Informasi Hayu Ameng ka Cianjur</title>
+                    </Helmet>
+                    <Banner image={`${image}/${item.banner_event}`} key={index}/>
+                </>
             ))
         }
         {

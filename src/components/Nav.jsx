@@ -9,7 +9,14 @@ function Nav() {
     const [searchValue, setSearchValue] = useState('')
 
     function handleSearch() {
-        navigate(`/hasilpenelusuran/${searchValue}`)
+        if (searchValue) {
+            navigate(`/hasilpenelusuran/${searchValue}`)
+        }
+        setSearchValue('')
+    }
+
+    function directPage(url) {
+        navigate(`${url}`)
     }
 
   return (
@@ -22,13 +29,49 @@ function Nav() {
                     </div>
                     <div className="col-9 nav-list-menu">
                         <div className='d-flex flex-row text-center'>
-                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/">Home</Link></li>
-                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/objekwisata">Objek Wisata</Link></li>
-                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/akomodasi">Akomodasi</Link></li>
-                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/kuliner">Kuliner</Link></li>
-                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/travel">Travel</Link></li>
-                            <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold nav-menu'><Link to="/event">Event</Link></li>
-                            <li className='nav-menu d-flex align-items-center justify-content-end flex-fill ms-xxl-4 fw-semibold'>
+                            <li className='nav-menu d-flex align-items-center mx-lg-3 mx-xl-3 fw-semibold'><Link to="/">Home</Link></li>
+                            {/* <li className='nav-menu d-flex align-items-center ms-md-3 me-md-3 ms-xl-4 me-xl-4 fw-semibold '><Link to="/objekwisata">Objek Wisata</Link></li> */
+                            <li className='nav-menu d-flex align-items-center mx-lg-3 mx-xl-3 fw-semibold'>
+                                <div className="btn-group">
+                                    <button type="button" className="btn px-0 fw-semibold" onClick={() => directPage('/objekwisata')}>Objek Wisata</button>
+                                    <button type="button" className="btn ps-1 pe-0 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span className="visually-hidden">Toggle Dropdown</span>
+                                    </button>
+                                    <ul className="dropdown-menu" id='dropdown-menu-nav'>
+                                        <li><Link className="dropdown-item" to={'/objekwisata/wisataalam'}>Wisata Alam</Link></li>
+                                        <li><Link className="dropdown-item" to={'/objekwisata/wisatabuatan'}>Wisata Buatan</Link></li>
+                                        <li><Link className="dropdown-item" to={'/objekwisata/wisatabudaya'}>Wisata Budaya</Link></li>
+                                    </ul>
+                                </div>    
+                            </li>}
+                            <li className='nav-menu d-flex align-items-center mx-lg-3 mx-xl-3 fw-semibold'>
+                                <div className="btn-group">
+                                    <button type="button" className="btn px-0 fw-semibold" onClick={() => directPage('/akomodasi')}>Akomodasi</button>
+                                    <button type="button" className="btn ps-1 pe-0 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span className="visually-hidden">Toggle Dropdown</span>
+                                    </button>
+                                    <ul className="dropdown-menu" id='dropdown-menu-nav'>
+                                        <li><Link className="dropdown-item" to={'/akomodasi/hotelbintang'}>Hotel Bintang</Link></li>
+                                        <li><Link className="dropdown-item" to={'/akomodasi/hotelnonbintang'}>Hotel Non Bintang</Link></li>
+                                        <li><Link className="dropdown-item" to={'/akomodasi/villa'}>Villa</Link></li>
+                                    </ul>
+                                </div>  
+                            </li>
+                            <li className='nav-menu d-flex align-items-center mx-lg-3 mx-xl-3 fw-semibold'>
+                                <div className="btn-group">
+                                    <button type="button" className="btn px-0 fw-semibold" onClick={() => directPage('/kuliner')}>Kuliner</button>
+                                    <button type="button" className="btn ps-1 pe-0 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span className="visually-hidden">Toggle Dropdown</span>
+                                    </button>
+                                    <ul className="dropdown-menu" id='dropdown-menu-nav'>
+                                        <li><Link className="dropdown-item" to={'/kuliner/tempatmakan'}>Tempat Makan</Link></li>
+                                        <li><Link className="dropdown-item" to={'/kuliner/oleh-oleh'}>Oleh-oleh</Link></li>
+                                    </ul>
+                                </div>  
+                            </li>
+                            <li className='nav-menu d-flex align-items-center mx-lg-3 mx-xl-3 fw-semibold'><Link to="/travel">Travel</Link></li>
+                            <li className='nav-menu d-flex align-items-center mx-lg-3 mx-xl-3 fw-semibold'><Link to="/event">Event</Link></li>
+                            <li className='nav-menu d-flex align-items-center justify-content-end flex-fill ms-lg-2 ms-xl-3 fw-semibold'>
                                 <form className='form' onSubmit={handleSearch}>
                                     <div className='d-flex align-items-center input-wrapper py-1 w-auto'>
                                         <input type="text" placeholder='Search' className='search-input border-0' value={searchValue} onChange={(e) => setSearchValue(e.target.value)}/>
@@ -81,9 +124,9 @@ function Nav() {
                     </div>
                 </Link>
                 <div className='col-12 py-2'>
-                    <form className='form'>
+                    <form className='form' onSubmit={handleSearch}>
                         <div className='d-flex align-items-center input-wrapper w-auto'>
-                            <input type="text" placeholder='Search' className='search-input border-0'/>
+                            <input type="text" placeholder='Search' className='search-input border-0' value={searchValue} onChange={(e) => setSearchValue(e.target.value)}/>
                             <button type='submit' className='border-0 button-search'><BiSearch size={'100%'}/></button>
                         </div>
                     </form>

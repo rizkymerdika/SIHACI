@@ -10,7 +10,8 @@ import Youtube from "../assets/youtube.png"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link, useParams } from "react-router-dom"
-import CurrencyFormat from "react-currency-format"
+import { Helmet } from "react-helmet"
+import {NumericFormat} from 'react-number-format'
 
 function KontenWisata() {
     useEffect(() => {
@@ -36,11 +37,20 @@ function KontenWisata() {
         return `${hours}:${minutes}`;
     };
 
+    // function currencyFormat(num) {
+    //     return 'Rp' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    // }
+
   return (
     <>
         {
             objekWisata.map((item, index) => (
-                <Banner image={`${image}/${item.banner_wisata}`} title={item.nama_wisata} key={index}/>
+                <>
+                    <Helmet>
+                        <title>{`${item.nama_wisata}`} - Sistem Informasi Hayu Ameng ka Cianjur</title>
+                    </Helmet>
+                    <Banner image={`${image}/${item.banner_wisata}`} title={item.nama_wisata} key={index}/>
+                </>
             ))
         }
         {
@@ -57,11 +67,11 @@ function KontenWisata() {
                                 <p className='my-0 content-2-text'>{item.deskripsi_wisata}</p>
                                 <div className="mt-4">
                                     <span className="d-block content-2-text">Senin - Jumat: {formatTime(item.jam_buka_hari_kerja)} - {formatTime(item.jam_tutup_hari_kerja)} WIB</span>
-                                    <span className="d-block content-2-text">Harga Tiket: <CurrencyFormat value={item.harga_tiket_hari_kerja} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'}/></span>
+                                    <span className="d-block content-2-text">Harga Tiket: <NumericFormat value={item.harga_tiket_hari_kerja} displayType={'text'} thousandSeparator="." decimalSeparator="," prefix={'Rp'}/></span>
                                 </div>
                                 <div className="mt-4">
                                     <span className="d-block content-2-text">Sabtu, Minggu & Libur Nasional: {formatTime(item.jam_buka_weekend)} - {formatTime(item.jam_tutup_weekend)} WIB</span>
-                                    <span className="d-block content-2-text">Harga Tiket: <CurrencyFormat value={item.harga_tiket_weekend} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'}/></span>
+                                    <span className="d-block content-2-text">Harga Tiket: <NumericFormat value={item.harga_tiket_weekend} displayType={'text'} thousandSeparator="." decimalSeparator="," prefix={'Rp'}/></span>
                                 </div>
                                 <p className='my-0 mt-4 content-2-text'>{item.alamat_wisata}</p>
                                 <div className="link-account-contacts d-flex justify-content-start mt-4">

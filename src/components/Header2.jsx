@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 
-function Header2({header, link1, link2, link3, submenu1, submenu2, submenu3}) {
+function Header2({header, link1, link2, link3, submenu1, submenu2, submenu3, style}) {
   return (
     <div className="header-bg mt-2">
         <div className="container">
@@ -12,7 +12,7 @@ function Header2({header, link1, link2, link3, submenu1, submenu2, submenu3}) {
                         <ul className="dropdown-menu" id="dropdown-menu">
                             <li><Link to={link1} className="dropdown-item">{submenu1}</Link></li>
                             <li><Link to={link2} className="dropdown-item">{submenu2}</Link></li>
-                            <li><Link to={link3} className="dropdown-item">{submenu3}</Link></li>
+                            <li style={{display: style}}><Link to={link3} className="dropdown-item">{submenu3}</Link></li>
                         </ul>
                     </div>
                 </div>

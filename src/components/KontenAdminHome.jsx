@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import Chart from './AdminChart';
 
 function KontenAdminHome() {
     const api = import.meta.env.VITE_APP_API;
@@ -132,6 +133,9 @@ function KontenAdminHome() {
                     </div>
                 </div>
             </div>
+        </div>
+        <div className="container my-5" >
+            <Chart laporan={1} />
         </div>
     </div>
   )

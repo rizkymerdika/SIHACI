@@ -70,6 +70,7 @@ function Sidebar({style1, style2, style3, style4, style5, style6, style7, style8
                 <ul className='dropdown-menu'>
                     <li><Link to={"/admin/listhotel"} className='dropdown-item'>Laporan</Link></li>
                     <li><Link to={"/admin/registrasi"} className='dropdown-item'>Registrasi</Link></li>
+                    <li><Link to={"/admin/listakun"} className='dropdown-item'>List Akun</Link></li>
                 </ul>
             </div>
         </li>

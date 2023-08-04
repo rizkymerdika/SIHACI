@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 function FormAdminTambahTravel() {
@@ -51,15 +51,32 @@ function FormAdminTambahTravel() {
       });
   
       setNamaTravel('')
+      setJamBuka('')
+      setJamTutup('')
+      setTripDanHarga('')
       setAlamat('')
+      setNomorTelepon('')
       setBanner('')
       setImage('')
       setDeskripsiTravel('')
       setLinkGoogleMaps('')
+      setLinkWebsite('')
       setLinkInstagram('')
-      setLinkShopee('')
-      setLinkTokopedia('')
+      setLinkFacebook('')
+      setLinkTwitter('')
     }
+
+    useEffect(() => {
+      const editor = CKEDITOR.replace('editor1');
+
+      editor.on('change', () => {
+        setTripDanHarga(editor.getData());
+      });
+      return () => {
+        editor.destroy();
+      };
+      
+    }, [])
 
   return (
     <div className="bg-form-admin">
@@ -91,9 +108,7 @@ function FormAdminTambahTravel() {
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Trip dan Harga</label>
-                      <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="text" name="Trip dan Harga" className="input-form-admin" rows="8" value={tripDanHarga} onChange={(e) => setTripDanHarga(e.target.value)} required placeholder="Rp40.000 - Rp100.000"></input>
-                      </div>
+                      <textarea name="Trip dan Harga" id="editor1" rows="10" cols="80" value={tripDanHarga} onChange={(e) => setTripDanHarga(e.target.value)}></textarea>
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Alamat</label>

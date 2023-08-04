@@ -9,7 +9,6 @@ function FormAdminEditAkomodasi() {
     const url1 = `${api}${getAkomById}${id_akomodasi.id}`
     const url2 = `${api}${updateAkomodasi}${id_akomodasi.id}`
 
-    const [idHotel, setIdHotel] = useState('')
     const [namaHotel, setNamaHotel] = useState('')
     const [kategori, setKategori] = useState('')
     const [hargaTerendah, setHargaTerendah] = useState('')
@@ -32,7 +31,6 @@ function FormAdminEditAkomodasi() {
         return response.json()
       })
       .then((res) => {
-        setIdHotel(res.data[0].id_hotel)
         setNamaHotel(res.data[0].nama_akomodasi)
         setKategori(res.data[0].kategori_hotel)
         setHargaTerendah(res.data[0].harga_terendah)
@@ -54,7 +52,6 @@ function FormAdminEditAkomodasi() {
     function handleEdit(e) {
       e.preventDefault()
       const formData = new FormData();
-      formData.append('id_hotel', idHotel)
       formData.append('nama_akomodasi', namaHotel)
       formData.append('kategori_hotel', kategori)
       formData.append('harga_terendah', hargaTerendah)

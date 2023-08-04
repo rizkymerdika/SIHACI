@@ -2,6 +2,8 @@ import {BsFacebook, BsYoutube} from 'react-icons/bs'
 import {RiInstagramFill} from 'react-icons/ri'
 import {IoLogoTiktok} from 'react-icons/io5'
 import { Link } from 'react-router-dom'
+import LogoPemda from '../assets/logopemda.png'
+import Disbudpar from '../assets/disbudparcianjur.png'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
@@ -37,7 +39,11 @@ function footer() {
                 </div>
                 <div className="col-sm-6 col-lg-3 mt-4">
                     <h3 className='fw-semibold footer-content'>Media Partner</h3>
-                    <li className='footer-content mb-2'>Sistem Input Data Hotel</li>
+                    <li className='footer-content mb-2'><Link to={"/login"}>Sistem Input Data</Link></li>
+                    <div className='d-flex justify-content-lg-between align-items-center'>
+                        <a href="https://cianjurkab.go.id/" target='_blank'><img src={LogoPemda} alt="Kabupaten Cianjur"/></a>
+                        <a href="https://web.cianjurkab.go.id/pemerintahan/dinas/dinas-kebudayaan-dan-olahraga/" target='_blank' className='mx-4 mx-md-5 mx-lg-0'><img src={Disbudpar} alt="Disbudpar Cianjur"/></a>
+                    </div>
                 </div>
             </div>
             <div className='row justify-content-center mt-5'>

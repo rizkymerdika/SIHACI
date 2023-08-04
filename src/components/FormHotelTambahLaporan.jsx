@@ -1,12 +1,15 @@
 import axios from "axios"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 
 function FormHotelTambahLaporan() {
-    const [tanggal, setTanggal] = useState('')
+    const [akomodasi, setAkomodasi] = useState([])
+    const [bulan, setBulan] = useState('')
+    const [tahun, setTahun] = useState('')
     const [klasifikasiHotel, setKlasifikasiHotel] = useState('')
     const [jumlahKamarDimiliki, setJumlahKamarDimiliki] = useState('')
     const [jumlahKamarTerjual, setJumlahKamarTerjual] = useState('')
+    const [fasilitas, setFasilitas] = useState('')
     const [lokal, setLokal] = useState('')
     const [asia, setAsia] = useState('')
     const [afrika, setAfrika] = useState('')
@@ -21,21 +24,34 @@ function FormHotelTambahLaporan() {
 
     const api = import.meta.env.VITE_APP_API
     const tambahLaporan = import.meta.env.VITE_API_TAMBAH_LAPORAN
+    const getAkomodasi = import.meta.env.VITE_API_GET_AKOMODASI
     const url = `${api}${tambahLaporan}`
+    const url2 = `${api}${getAkomodasi}`
     const idUser = localStorage.getItem('id_user')
+    const namaUser = localStorage.getItem('nama_user')
+
+    const editorRef = useRef();
 
     function handleSelect(value) {
         setKlasifikasiHotel(value)
     }
 
+    function handleSelect2(value) {
+      setBulan(value)
+  }
+
     function handleSubmit(e) {
+      
       e.preventDefault()
       axios.post(url, {
         "id_hotel": idUser,
-        "tanggal_laporan": tanggal,
+        "id_akomodasi": akomodasi[0].id_akomodasi,
+        'bulan': bulan,
+        'tahun': tahun,
         "klasifikasi_hotel": klasifikasiHotel,
         "jumlah_kamar_dimiliki": jumlahKamarDimiliki,
         "jumlah_kamar_terjual": jumlahKamarTerjual,
+        "fasilitas": fasilitas,
         "jumlah_wisatawan_lokal": lokal,
         "jumlah_wisatawan_asia": asia,
         "jumlah_wisatawan_afrika": afrika,
@@ -53,6 +69,23 @@ function FormHotelTambahLaporan() {
       })
     }
 
+    useEffect(() => {
+      axios(url2)
+      .then((res) => {
+        setAkomodasi(res.data.data.filter((item) => item.nama_akomodasi == namaUser))
+      })
+
+      const editor = CKEDITOR.replace('editor1');
+
+      editor.on('change', () => {
+        setFasilitas(editor.getData());
+      });
+      return () => {
+        editor.destroy();
+      };
+      
+    }, [])
+
   return (
     <div className="bg-form-admin">
         <div className="container">
@@ -64,9 +97,27 @@ function FormHotelTambahLaporan() {
                   </div>
                   <form className="col-11" onSubmit={handleSubmit}>
                     <div className="mb-3">
-                      <label className="label-form-admin fw-semibold">Tanggal</label>
+                      <label className="label-form-admin fw-semibold">Bulan</label>
+                      <select name="Bulan" className="input-form-admin-3 mt-1" value={bulan} onChange={(e) => handleSelect2(e.target.value)} required>
+                        <option>Silahkan Pilih</option>
+                        <option value="Januari">Januari</option>
+                        <option value="Februari">Februari</option>
+                        <option value="Maret">Maret</option>
+                        <option value="April">April</option>
+                        <option value="Mei">Mei</option>
+                        <option value="Juni">Juni</option>
+                        <option value="Juli">Juli</option>
+                        <option value="Agustus">Agustus</option>
+                        <option value="September">September</option>
+                        <option value="Oktober">Oktober</option>
+                        <option value="November">November</option>
+                        <option value="Desember">Desember</option>
+                      </select>
+                    </div>
+                    <div className="mb-3">
+                      <label className="label-form-admin fw-semibold">Tahun</label>
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <input type="date" name="Tanggal" className="input-form-admin" value={tanggal} onChange={(e) => setTanggal(e.target.value)} required/>
+                        <input type="Number" name="Tahun" className="input-form-admin" placeholder="2023" value={tahun} onChange={(e) => setTahun(e.target.value)} required/>
                       </div>
                     </div>
                     <div className="mb-3">
@@ -89,6 +140,10 @@ function FormHotelTambahLaporan() {
                             <input type="number" name="Jumlah Kamar Terjual" className="input-form-admin-2" placeholder="Terjual" value={jumlahKamarTerjual} onChange={(e) => setJumlahKamarTerjual(e.target.value)} required/>
                         </div>
                       </div>
+                    </div>
+                    <div className="mb-3">
+                      <label className="label-form-admin fw-semibold">Fasilitas</label>
+                      <textarea name="Fasilitas" id="editor1" rows="10" cols="80" value={fasilitas} onChange={(e) => setFasilitas(e.target.value)}></textarea>
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Jumlah Wisatawan</label>

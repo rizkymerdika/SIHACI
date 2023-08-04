@@ -79,13 +79,15 @@ function EventPariwisata() {
                         {
                             event.filter((item, index) => index < 8).map((item, index) => (
                                 <div key={index}>
-                                    <div className="card event-pariwisata-card m-auto">
-                                        <img src={`${image}/${item.image_event}`} alt={item.nama_event} className="card-img-top" />
-                                        <div className="card-body flex-column justify-content-start">
-                                            <h4 className="card-title my-0 py-3 text-center fw-bold">{item.nama_event}</h4>
-                                            <p className="card-text">{`${item.deskripsi_event.substring(0, 140)}.....`}</p>
+                                    <Link to={`/event/detailevent/${item.id_event}`}>
+                                        <div className="card event-pariwisata-card m-auto">
+                                            <img src={`${image}/${item.image_event}`} alt={item.nama_event} className="card-img-top" />
+                                            <div className="card-body flex-column justify-content-start">
+                                                <h4 className="card-title my-0 py-3 text-center fw-bold">{item.nama_event}</h4>
+                                                <p className="card-text">{`${item.deskripsi_event.substring(0, 140)}.....`}</p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </div>
                             ))
                         }

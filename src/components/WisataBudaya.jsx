@@ -72,7 +72,7 @@ function WisataBudaya() {
                     <div className="col-12">
                         <Slider {...settings}>
                             {
-                                objekWisata.filter((item, index) => item.kategori_wisata == 'Kebudayaan' && index < 12).map((item, index) => (
+                                objekWisata.filter((item, index) => item.kategori_wisata == 'Wisata Budaya' && index < 12).map((item, index) => (
                                     <div key={index}>
                                         <Link to={`/objekwisata/wisatabudaya/detailwisata/${item.id_wisata}`}>
                                             <div className="card objek-wisata-card m-auto">

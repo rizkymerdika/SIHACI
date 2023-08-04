@@ -27,7 +27,7 @@ function ListTravel() {
         <div className="row flex-wrap">
             {
                 travel.toReversed().map((item, index) => (
-                    <div className="col-sm-6 mb-5" key={index} data-aos="fade-up">
+                    <div className="col-sm-6 col-lg-4 mb-5" key={index} data-aos="fade-up">
                         <Link to={`/travel/detailtravel/${item.id_travel}`}>
                             <div className="card travel-card border-0 m-auto">
                                 <img src={`${image}/${item.image_travel}`} alt={item.nama_travel} className="img-travel-outline" />

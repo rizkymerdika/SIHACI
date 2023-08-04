@@ -62,7 +62,7 @@ function ListHB() {
         <div className="row flex-wrap">
             { 
                 akomodasi.map((item,index) => (
-                    <div className="col-sm-6 mb-5" key={index}>
+                    <div className="col-sm-6 col-lg-4 mb-5" key={index}>
                         <Link to={`/akomodasi/hotelbintang/detailakomodasi/${item.id_akomodasi}`}>
                             <div className="card travel-card border-0 m-auto">
                                 <img src={`${image}/${item.image_akomodasi}`} alt={item.nama_akomodasi} className="img-travel-outline" />
@@ -80,7 +80,7 @@ function ListHB() {
             <ul className="pagination justify-content-center">
                 {
                     pageAfter != 1 ? (
-                        <li className="page-item"><a className="page-link" href="javascript:void();" onClick={() => handleClick(pageAfter-1)} aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                        <li className="page-item"><a className="page-link" key={pageAfter} href="javascript:void();" onClick={() => handleClick(pageAfter-1)} aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
                     ) : 
                     (
                         <li className="page-item"><a className="page-link disabled" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
@@ -88,7 +88,15 @@ function ListHB() {
                 }
                 {
                     Array.from({ length: akomodasiCount }, (_, index) => (
-                        <li className="page-item"><a className="page-link" onClick={() => handleClick(index+1)} href="javascript:;" key={index}>{index+1}</a></li>
+                        <li className="page-item" key={index}>
+                            {
+                                pageAfter === index+1 ? (
+                                    <a className="page-link bg-primary text-white" onClick={() => handleClick(index+1)} href="javascript:;" >{index+1}</a>
+                                ) : (
+                                    <a className="page-link" onClick={() => handleClick(index+1)} href="javascript:;" key={index}>{index+1}</a>
+                                )
+                            }
+                        </li>
                     ))
                 }
                 {

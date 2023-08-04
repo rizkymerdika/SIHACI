@@ -1,59 +1,58 @@
-import { Link } from "react-router-dom"
-import Wisataalam7 from "../assets/wisataalam7.png"
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Link } from "react-router-dom"
 
-function ListKBD() {
-    const [wisata, setWisata ] = useState([]);
-    const [wisataCount, setWisataCount ] = useState([]);
+function ListKuliner2() {
+    const [kuliner, setKuliner] = useState([]);
+    const [kulinerCount, setKulinerCount] = useState([]);
     const [pageAfter, setPageAfter] = useState(1);
 
     const api = `${import.meta.env.VITE_APP_API}`;
-    const getOw = import.meta.env.VITE_API_GET_OW
-    const getImage = import.meta.env.VITE_API_GET_IMAGE_WISATA
+    const getKuli = import.meta.env.VITE_API_GET_KULINER
+    const getImage = import.meta.env.VITE_API_GET_IMAGE_KULINER
     const image = `${api}${getImage}`;
-    const url = `${api}${getOw}`
+    const url = `${api}${getKuli}`
 
     let limit = 10;
-    let kategori = 'Wisata Budaya'
+    let kategori = 'Oleh-oleh'
 
-    const getWisata = async () => {
+    const getKuliner = async () => {
         try{
             const response = await fetch(`${url}?category=${kategori}`)
             const jsonData = await response.json();
             let countData = jsonData.data.length/limit
 
             if((jsonData.data.length % limit) == 0 ){
-                setWisataCount(parseInt(countData))
+                setKulinerCount(parseInt(countData))
             } 
             else {
-                setWisataCount (parseInt(countData)+1)
+                setKulinerCount (parseInt(countData)+1)
             }
         } catch(e){
 
         }
     }
 
-    const getAllWisata = async (pages) => {
+    const getAllKuliner = async (pages) => {
         try{
             const response1 = await fetch(`${url}?limit=${limit}&page=${pages}&category=${kategori}`)
             const jsonData2 = await response1.json();
-            setWisata(jsonData2.data)
+            setKuliner(jsonData2.data)
         } catch (e) {
 
         }
     }
     
     const handleClick = (page) =>{
-        getAllWisata(page)
+        getAllKuliner(page)
         setPageAfter(page)
     }
 
     useEffect(() => {
         AOS.init()
-        getWisata()
-        getAllWisata(pageAfter)
+        getKuliner()
+        getAllKuliner(pageAfter)
         
     }, [])
 
@@ -61,13 +60,13 @@ function ListKBD() {
     <div className="container mt-5">
         <div className="row flex-wrap">
             { 
-                wisata.map((item,index) => (
+                kuliner.map((item,index) => (
                     <div className="col-sm-6 col-lg-4 mb-5" key={index}>
-                        <Link to={`/objekwisata/wisatabudaya/detailwisata/${item.id_wisata}`}>
+                        <Link to={`/kuliner/rekomendasikuliner/detailkuliner/${item.id_kuliner}`}>
                             <div className="card travel-card border-0 m-auto">
-                                <img src={`${image}/${item.image_wisata}`} alt={item.nama_wisata} className="img-travel-outline" />
+                                <img src={`${image}/${item.image_kuliner}`} alt={item.nama_kuliner} className="img-travel-outline" />
                                 <div className="card-body">
-                                    <h4 className="card-title fw-semibold my-0 text-center">{item.nama_wisata}</h4>
+                                    <h4 className="card-title fw-semibold my-0 text-center">{item.nama_kuliner}</h4>
                                 </div>
                             </div>
                         </Link>
@@ -87,8 +86,9 @@ function ListKBD() {
                     )
                 }
                 {
-                    Array.from({ length: wisataCount }, (_, index) => (
+                    Array.from({ length: kulinerCount }, (_, index) => (
                         <li className="page-item" key={index}>
+                            {/* <a className="page-link" onClick={() => handleClick(index+1)} href="javascript:;" key={index}>{index+1}</a> */}
                             {
                                 pageAfter === index+1 ? (
                                     <a className="page-link bg-primary text-white" onClick={() => handleClick(index+1)} href="javascript:;" >{index+1}</a>
@@ -100,7 +100,7 @@ function ListKBD() {
                     ))
                 }
                 {
-                    pageAfter != wisataCount ? (
+                    pageAfter != kulinerCount ? (
                         <li className="page-item"><a className="page-link" href="javascript:void();" onClick={() => handleClick(pageAfter+1)} aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
                     ) : (
                         <li className="page-item"><a className="page-link disabled" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
@@ -112,4 +112,4 @@ function ListKBD() {
   )
 }
 
-export default ListKBD
+export default ListKuliner2

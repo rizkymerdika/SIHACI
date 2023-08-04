@@ -10,6 +10,7 @@ function FormAdminEditKuliner() {
     const url2 = `${api}${updateKuliner}${id_kuliner.id}`
 
     const [namaKuliner, setNamaKuliner] = useState('')
+    const [kategori, setKategori] = useState('')
     const [alamat, setAlamat] = useState('')
     const [banner, setBanner] = useState(null)
     const [image, setImage] = useState(null)
@@ -26,6 +27,7 @@ function FormAdminEditKuliner() {
       })
       .then((res) => {
         setNamaKuliner(res.data[0].nama_kuliner)
+        setKategori(res.data[0].kategori_kuliner)
         setAlamat(res.data[0].alamat_kuliner)
         setBanner(res.data[0].banner_kuliner)
         setImage(res.data[0].image_kuliner)
@@ -41,6 +43,7 @@ function FormAdminEditKuliner() {
       e.preventDefault()
       const formData = new FormData();
       formData.append('nama_kuliner', namaKuliner)
+      formData.append('kategori_kuliner', kategori)
       formData.append('alamat_kuliner', alamat)
       if (banner != "") {
         formData.append('banner_kuliner', banner)
@@ -82,6 +85,14 @@ function FormAdminEditKuliner() {
                       <div className="input-wrapper-login d-flex justify-content-center mt-1">
                         <input type="text" name="Nama Kuliner" className="input-form-admin" placeholder="Tauco Cap Meong" value={namaKuliner} onChange={(e) => setNamaKuliner(e.target.value)} required/>
                       </div>
+                    </div>
+                    <div className="mb-3">
+                      <label className="label-form-admin fw-semibold">Kategori</label>
+                      <select name="Kategori" className="input-form-admin-3 mt-1" value={kategori} onChange={(e) => handleSelect(e.target.value)} required>
+                        <option>Silahkan Pilih</option>
+                        <option value="Tempat Makan">Tempat Makan</option>
+                        <option value="Oleh-oleh">Oleh-oleh</option>
+                      </select>
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Alamat</label>

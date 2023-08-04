@@ -45,12 +45,6 @@ function FormAdminTambahAkomodasi() {
     function handleSubmit(e){
       e.preventDefault()
       const formData = new FormData();
-      if (filterHotel != '') {
-        formData.append('id_hotel', filterHotel[0].id_user)
-      }
-      // else{
-      //   formData.append('id_hotel',  )
-      // }
       formData.append('nama_akomodasi', namaHotel)
       formData.append('kategori_hotel', kategori)
       formData.append('harga_terendah', hargaTerendah)

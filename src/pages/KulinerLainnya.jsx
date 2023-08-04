@@ -1,9 +1,9 @@
 import { Helmet } from "react-helmet"
 import Nav from "../components/Nav"
 import Footer from "../components/footer"
-import Header from "../components/Header"
 import ListKuliner from "../components/ListKuliner"
 import React, { useEffect } from 'react'
+import Header2 from "../components/Header2"
 
 function KulinerLainnya() {
   useEffect(() => {
@@ -13,10 +13,10 @@ function KulinerLainnya() {
   return (
     <>
         <Helmet>
-            <title>Kuliner Cianjur - Sistem Informasi Hayu Ameng ka Cianjur</title>
+            <title>Tempat Makan - Sistem Informasi Hayu Ameng ka Cianjur</title>
         </Helmet>
         <Nav/>
-        <Header header={"Rekomendasi Kuliner"}/>
+        <Header2 header={"Rekomendasi Tempat Makan"} link1={"/kuliner/tempatmakan"} link2={"/kuliner/oleh-oleh"} submenu1={"Tempat Makan"} submenu2={"Oleh-Oleh"} style={"none"}/>
         <ListKuliner/>
         <Footer/>
     </>

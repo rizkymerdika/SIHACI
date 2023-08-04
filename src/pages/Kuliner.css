@@ -7,6 +7,11 @@
 }
 #bgKulinerCianjur{
     background-image: url(../assets/bgkulinercianjur.svg);
+}
+#bgKulinerCianjur2{
+    background-image: url(../assets/bgkulinercianjur2.png);
+}
+#bgKulinerCianjur, #bgKulinerCianjur2{
     background-size: cover;
 }
 .kuliner-card img{

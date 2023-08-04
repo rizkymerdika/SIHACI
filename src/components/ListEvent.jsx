@@ -27,7 +27,7 @@ function ListEvent() {
         <div className="row flex-wrap">
             {
                 event.toReversed().map((item, index) => (
-                    <div className="col-sm-6 mb-5" key={index} data-aos="fade-up">
+                    <div className="col-sm-6 col-lg-4 mb-5" key={index} data-aos="fade-up">
                         <Link to={`/event/detailevent/${item.id_event}`}>
                             <div className="card event-card border-0 m-auto">
                                 <img src={`${image}/${item.image_event}`} alt={item.nama_event} className="img-event-outline" />

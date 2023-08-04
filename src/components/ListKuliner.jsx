@@ -16,10 +16,11 @@ function ListKuliner() {
     const url = `${api}${getKuli}`
 
     let limit = 10;
+    let kategori = 'Tempat Makan'
 
     const getKuliner = async () => {
         try{
-            const response = await fetch(`${url}`)
+            const response = await fetch(`${url}?category=${kategori}`)
             const jsonData = await response.json();
             let countData = jsonData.data.length/limit
 
@@ -36,7 +37,7 @@ function ListKuliner() {
 
     const getAllKuliner = async (pages) => {
         try{
-            const response1 = await fetch(`${url}?limit=${limit}&page=${pages}`)
+            const response1 = await fetch(`${url}?limit=${limit}&page=${pages}&category=${kategori}`)
             const jsonData2 = await response1.json();
             setKuliner(jsonData2.data)
         } catch (e) {
@@ -61,7 +62,7 @@ function ListKuliner() {
         <div className="row flex-wrap">
             { 
                 kuliner.map((item,index) => (
-                    <div className="col-sm-6 mb-5" key={index}>
+                    <div className="col-sm-6 col-lg-4 mb-5" key={index}>
                         <Link to={`/kuliner/rekomendasikuliner/detailkuliner/${item.id_kuliner}`}>
                             <div className="card travel-card border-0 m-auto">
                                 <img src={`${image}/${item.image_kuliner}`} alt={item.nama_kuliner} className="img-travel-outline" />
@@ -87,7 +88,16 @@ function ListKuliner() {
                 }
                 {
                     Array.from({ length: kulinerCount }, (_, index) => (
-                        <li className="page-item"><a className="page-link" onClick={() => handleClick(index+1)} href="javascript:;" key={index}>{index+1}</a></li>
+                        <li className="page-item" key={index}>
+                            {/* <a className="page-link" onClick={() => handleClick(index+1)} href="javascript:;" key={index}>{index+1}</a> */}
+                            {
+                                pageAfter === index+1 ? (
+                                    <a className="page-link bg-primary text-white" onClick={() => handleClick(index+1)} href="javascript:;" >{index+1}</a>
+                                ) : (
+                                    <a className="page-link" onClick={() => handleClick(index+1)} href="javascript:;" key={index}>{index+1}</a>
+                                )
+                            }
+                        </li>
                     ))
                 }
                 {

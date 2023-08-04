@@ -8,6 +8,7 @@ import Tokopedia from "../assets/tokopedia.png"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useParams } from "react-router-dom"
+import { Helmet } from "react-helmet"
 
 function KontenKuliner() {
     useEffect(() => {
@@ -30,7 +31,12 @@ function KontenKuliner() {
     <>
         {
             kuliner.map((item, index) => (
-                <Banner image={`${image}/${item.banner_kuliner}`} title={item.nama_kuliner} key={index}/>
+                <>
+                    <Helmet>
+                        <title>{item.nama_kuliner} - Sistem Informasi Hayu Ameng ka Cianjur</title>
+                    </Helmet>
+                    <Banner image={`${image}/${item.banner_kuliner}`} title={item.nama_kuliner} key={index}/>
+                </>
             ))
         }
         {

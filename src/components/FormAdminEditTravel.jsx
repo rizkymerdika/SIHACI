@@ -23,6 +23,7 @@ function FormAdminEditTravel() {
     const [linkInstagram, setLinkInstagram] = useState('')
     const [linkFacebook, setLinkFacebook] = useState('')
     const [linkTwitter, setLinkTwitter] = useState('')
+    console.log(tripDanHarga);
 
     useEffect(() => {
       fetch(url1)
@@ -45,7 +46,18 @@ function FormAdminEditTravel() {
         setLinkFacebook(res.data[0].link_facebook)
         setLinkTwitter(res.data[0].link_twitter)
       })
-    }, [])
+    }, [])    
+
+    useEffect(() => {
+      const editor = CKEDITOR.replace('editor1');
+      editor.setData(tripDanHarga);
+      editor.on('change', () => {
+        setTripDanHarga(editor.getData());
+      });
+      return () => {
+        editor.destroy();
+      };
+    }, [tripDanHarga])
 
     function handleEdit(e) {
       e.preventDefault()
@@ -113,11 +125,7 @@ function FormAdminEditTravel() {
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Trip dan Harga</label>
-                      <div className="input-wrapper-login d-flex justify-content-center mt-1">
-                        <textarea name="Trip dan Harga" className="input-form-admin" rows="8" value={tripDanHarga} onChange={(e) => setTripDanHarga(e.target.value)} required placeholder="Contoh Penulisan
-Cianjur - Jakarta: Rp. 95.000
-Cianjur - Bandung: Rp. 55.000"></textarea>
-                      </div>
+                      <textarea name="Trip dan Harga" id="editor1" rows="10" cols="80" value={tripDanHarga} onChange={(e) => setTripDanHarga(e.target.value)}></textarea>
                     </div>
                     <div className="mb-3">
                       <label className="label-form-admin fw-semibold">Alamat</label>

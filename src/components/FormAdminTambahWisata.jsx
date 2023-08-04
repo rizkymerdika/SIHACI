@@ -105,7 +105,7 @@ function FormAdminTambahWisata() {
                         <option>Silahkan Pilih</option>
                         <option value="Wisata Alam">Wisata Alam</option>
                         <option value="Wisata Buatan">Wisata Buatan</option>
-                        <option value="Kebudayaan">Kebudayaan</option>
+                        <option value="Wisata Budaya">Wisata Budaya</option>
                       </select>
                     </div>
                     <div className="mb-3">

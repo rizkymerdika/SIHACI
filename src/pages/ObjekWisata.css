@@ -71,7 +71,7 @@
     align-items: center;
 }
 .slider-lainnya{
-    font-size: 2rem;
+    font-size: 1.6rem;
 }
 
 /* Responsive */
@@ -85,6 +85,9 @@
     .objek-wisata-card img{
         height: 178px;
     }
+    .slider-lainnya{
+        font-size: 1.4rem;
+    }
 }
 @media screen and (max-width:1023px) {
     
@@ -97,7 +100,7 @@
         font-size: 1rem;
     }
     .slider-lainnya{
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     .card-body{
         height: 95px;
@@ -121,15 +124,15 @@
     .card-title{
         font-size: 1.3rem;
     }
-    .slider-lainnya{
-        font-size: 1.3rem;
-    }
     .carousel .carousel-indicators button{
         width: 20px;
         height: 20px;
     }
     .objek-wisata-card img{
         height: 229px;
+    }
+    .slider-lainnya{
+        font-size: 1.2rem;
     }
 }
 @media screen and (max-width: 424px) {
@@ -152,5 +155,8 @@
     }
     .objek-wisata-card img{
         height: 148px;
+    }
+    .slider-lainnya{
+        font-size: 1.1rem;
     }
 }

@@ -7,16 +7,26 @@ import Facebook from "../assets/logos_facebook.png"
 import Instagram from "../assets/logos_instagram.png"
 import Twitter from "../assets/twitter.png"
 import Youtube from "../assets/youtube.png"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import axios from "axios"
-import CurrencyFormat from "react-currency-format"
 import { useParams } from "react-router-dom"
+import Chart from "./KontenHotelChart"
+import { Helmet } from "react-helmet"
+import {NumericFormat} from 'react-number-format'
 
 function KontenHotel() {
+    const chartRef = useRef(null);
+
+    const [laporan, setLaporan] = useState('')
+
     useEffect(() => {
         axios(url)
         .then((res) => {
             setAkomodasi(res.data.data)
+        })
+        axios(url2)
+        .then((res) => {
+            setLaporan(res.data.data.length)
         })
     }, [])
 
@@ -27,13 +37,21 @@ function KontenHotel() {
     const image = `${api}${getImage}`;
     const url = `${api}${getAkomodasi}${id_akomodasi.id}`
 
+    const bulanTahun = import.meta.env.VITE_API_GET_LAPORAN_TAHUN_BULAN
+    const url2 = `${api}${bulanTahun}${id_akomodasi.id}`
+
     const [akomodasi, setAkomodasi] = useState([])
 
   return (
     <>
         {
             akomodasi.map((item, index) => (
-                <Banner image={`${image}/${item.banner_akomodasi}`} title={item.nama_akomodasi} key={index}/>
+                <>
+                    <Helmet>
+                        <title>{item.nama_akomodasi} - Sistem Informasi Hayu Ameng ka Cianjur</title>
+                    </Helmet>
+                    <Banner image={`${image}/${item.banner_akomodasi}`} title={item.nama_akomodasi} key={index}/>
+                </>
             ))
         }
         {
@@ -48,7 +66,7 @@ function KontenHotel() {
                         <div className="row py-4 py-sm-5 px-3 konten-outline">
                             <div className="col-lg-6 order-2 order-lg-1 mt-4 mt-lg-0">
                                 <p className='my-0 content-2-text'>{item.deskripsi_akomodasi}</p>
-                                <p className='my-0 mt-4 content-2-text'>Harga per Malam : <CurrencyFormat value={item.harga_terendah} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'}/> - <CurrencyFormat value={item.harga_tertinggi} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'}/></p>
+                                <p className='my-0 mt-4 content-2-text'>Harga per Malam : <NumericFormat value={item.harga_terendah} displayType={'text'} thousandSeparator="." decimalSeparator="," prefix={'Rp'}/> - <NumericFormat value={item.harga_tertinggi} displayType={'text'} thousandSeparator="." decimalSeparator="," prefix={'Rp'}/></p>
                                 <p className='my-0 mt-4 content-2-text'>{item.alamat_akomodasi}</p>
                                 <span className="content-2-text">{item.nomor_telepon}</span>
                                 <div className="link-account-contacts d-flex justify-content-start mt-4">
@@ -147,41 +165,20 @@ function KontenHotel() {
                 <Map mapSrc={item.link_gmaps} key={index}/>
             ))
         }
-        {/* <LineChart
-            data={{
-                labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni"],
-                datasets: [
-                    {
-                    data: [
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100
-                    ]
-                    }
-                ]
-                }}
-            width={Dimensions.get("window").width - 50} // from react-native
-            height={220}
-            yAxisLabel={"Rp"}
-            chartConfig={{
-            backgroundColor: "red",
-            backgroundGradientFrom: "red",
-            backgroundGradientTo: "red",
-            decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `white`,
-            labelColor: (opacity = 1) => `white`,
-            style: {
-                borderRadius: 16
-            }
-            }}
-            style={{
-                marginVertical: 8,
-                borderRadius: 16
-            }}
-        /> */}
+        {
+            laporan != 0 ? (
+                <div className="container mt-5" data-aos='fade-up' key={laporan}>
+                    <div className="row">
+                        <div className="col-12 text-center">
+                            <h1 className="content-2-head fw-semibold">Grafik Pengunjung Hotel</h1>
+                        </div>
+                    </div>
+                    <Chart laporan={id_akomodasi.id} />
+                </div>
+            ) : ''
+        }
+        
+        
     </>
   )
 }

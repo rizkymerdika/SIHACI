@@ -9,6 +9,7 @@ import Twitter from "../assets/twitter.png"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useParams } from "react-router-dom"
+import { Helmet } from "react-helmet"
 
 function KontenTravel() {
     useEffect(() => {
@@ -38,7 +39,12 @@ function KontenTravel() {
     <>
         {
             travel.map((item, index) => (
-                <Banner image={`${image}/${item.banner_travel}`} key={index}/>
+                <>
+                    <Helmet>
+                        <title>{item.nama_travel} - Sistem Informasi Hayu Ameng ka Cianjur</title>
+                    </Helmet>
+                    <Banner image={`${image}/${item.banner_travel}`} key={index}/>
+                </>
             ))
         }
         {
@@ -59,7 +65,7 @@ function KontenTravel() {
                                 </div>
                                 <div className="mt-4">
                                     <span className="d-block content-2-text">Harga Tiket</span>
-                                    <span className="d-block content-2-text">{item.trip_dan_harga}</span>
+                                    <div className="trip-dan-harga" dangerouslySetInnerHTML={{ __html: item.trip_dan_harga}}></div>
                                 </div>
                                 <p className='my-0 mt-4 content-2-text'>{item.alamat_travel} </p>
                                 <span className="d-block content-2-text">{item.nomor_telepon_travel}</span>

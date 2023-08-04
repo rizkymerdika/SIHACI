@@ -2,34 +2,38 @@
     box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
 }
 .travel-card img, .event-card img{
-    height: 320px;
+    height: 250px;
+}
+.trip-dan-harga ul{
+    list-style: none;
+    padding: 0;
 }
 
 /* Responsive */
 @media screen and (max-width:1399px) {
-    
+    .travel-card img, .event-card img{
+        height: 220px;
+    }
 }
 @media screen and (max-width:1199px) {
     .travel-card img, .event-card img{
-        height: 280px;
+        height: 200px;
     }
 }
 @media screen and (max-width:1023px) {
     
 }
 @media screen and (max-width:991px) {
-    .travel-card img, .event-card img{
-        height: 220px;
-    }
+
 }
 @media screen and (max-width: 767px) {
     .travel-card img, .event-card img{
-        height: 150px;
+        height: 170px;
     }
 }
 @media screen and (max-width: 575px) {
         .travel-card img, .event-card img{
-            height: 280px;
+            height: 260px;
         }
 }
 @media screen and (max-width: 424px) {

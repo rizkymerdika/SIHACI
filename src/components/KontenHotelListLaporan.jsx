@@ -50,17 +50,27 @@ function KontenHotelListLaporan() {
                                     <table className="table-laporan text-center">
                                         <tbody>
                                             <tr>
-                                                <th colSpan={2} className="py-1">Tanggal</th>
-                                                <td>{moment(item.tanggal_laporan).format('DD-MM-YYYY')}</td>
+                                                <th colSpan={2} className="py-1">Bulan</th>
+                                                <td>{`${item.bulan} ${item.tahun}`}</td>
                                             </tr>
                                             <tr>
-                                                <th rowSpan={2} className="table-row-span">Jumlah Kamar</th>
+                                                <th rowSpan={3} className="table-row-span">Jumlah Kamar</th>
                                                 <th className="py-1">Dimiliki</th>
                                                 <td>{item.jumlah_kamar_dimiliki}</td>
                                             </tr>
                                             <tr>
                                                 <th className="py-1">Terjual</th>
                                                 <td>{item.jumlah_kamar_terjual}</td>
+                                            </tr>
+                                            <tr>
+                                                <th className="py-1">Okupansi</th>
+                                                <td>{item.jumlah_kamar_terjual/item.jumlah_kamar_dimiliki*100}%</td>
+                                            </tr>
+                                            <tr>
+                                                <th colSpan={2} className="py-1">Fasilitas</th>
+                                                <td className="text-start">
+                                                    <div dangerouslySetInnerHTML={{ __html: item.fasilitas}}></div>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <th rowSpan={8} className="table-row-span">Jumlah Wisatawan</th>

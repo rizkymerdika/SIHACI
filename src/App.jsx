@@ -1,5 +1,5 @@
 import './App.css'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../node_modules/slick-carousel/slick/slick.css";
 import "../node_modules/slick-carousel/slick/slick-theme.css";
 import { Route, Routes } from 'react-router-dom';
@@ -46,11 +46,67 @@ import HotelHome from './pages/HotelHome'
 import HotelGantiPassword from './pages/HotelGantiPassword'
 import HotelTambahLaporan from './pages/HotelTambahLaporan'
 import HasilSearch from './pages/HasilSearch'
+import axios from 'axios';
+import ScrollToTop from './components/ScrollToTop';
+import KulinerLainnya2 from './pages/KulinerLainnya2';
+import AdminListAkun from './pages/AdminListAkun';
+import AdminEditAkunHotel from './pages/AdminEditAkunHotel';
 
 function App() {
 
+  const [today, setToday] = useState(new Date());
+  const [todayAll, setTodayAll] = useState(new Date());
+  const [ip, setIp] = useState('');
+  const [db, setDb] = useState(false);
+  function getToday () {
+    let datenow = new Date;
+    let day = String(datenow.getDate().length === 1 ? '0' + datenow.getDate() : datenow.getDate());
+    let month = String(datenow.getMonth() + 1).length === 1 ? '0' + (datenow.getMonth() + 1) : (datenow.getMonth() + 1);
+    let year = datenow.getFullYear();
+    setTodayAll(`${year}-${month}-${day}`);
+  }
+  function getIp(){
+    axios('https://ipapi.co/json')
+    .then((res) => {
+      setIp(res.data.ip);
+    })
+  }
+  useEffect(() => {
+    getToday()
+    getIp()
+    // console.log(today)
+    getDatabase();
+    setDatabase()
+  }, [today, ip, db])
+
+  function getDatabase(){
+    axios(`${import.meta.env.VITE_APP_API}${import.meta.env.VITE_API_PENGUNJUNG}/get?ip=${ip}&date=${todayAll}`)
+    .then((res) => {
+      if(ip != ''){
+        if(res.data.data.length > 0){
+          setDb(false)
+        } else {
+          setDb(true)
+        }
+      }
+    })
+  }
+  function setDatabase(){
+    if(db == true){
+      axios.post(`${import.meta.env.VITE_APP_API}${import.meta.env.VITE_API_PENGUNJUNG}/store`, {
+          "date": today,
+          "ip": ip
+      })
+      .then((res) => {
+          
+      })
+    }
+  }
+
+
   return (
     <div className='App'>
+      <ScrollToTop/>
       <Routes>
         <Route path='/' element={<Beranda/>}/>
         <Route path='/objekwisata'>
@@ -85,8 +141,12 @@ function App() {
         </Route>
         <Route path='/kuliner'>
           <Route index element={<Kuliner/>}/>
-          <Route path='rekomendasikuliner'>
+          <Route path='tempatmakan'>
             <Route index element={<KulinerLainnya/>}/>
+            <Route path='detailkuliner/:id' element={<DetailKuliner/>}/>
+          </Route>
+          <Route path='oleh-oleh'>
+            <Route index element={<KulinerLainnya2/>}/>
             <Route path='detailkuliner/:id' element={<DetailKuliner/>}/>
           </Route>
         </Route>
@@ -132,6 +192,10 @@ function App() {
           <Route path='listhotel'>
             <Route index element={<AdminLaporanHotel/>}/>
             <Route path='detaillaporan/:id' element={<AdminDetailLaporanHotel/>}/>
+          </Route>
+          <Route path='listakun'>
+            <Route index element={<AdminListAkun/>}/>
+            <Route path='editakunhotel/:id' element={<AdminEditAkunHotel/>}/>
           </Route>
         </Route>
         <Route path='hotel/:id'>

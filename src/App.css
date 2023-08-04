@@ -15,10 +15,10 @@
     background: #fff;
     z-index: 2;
 }
-.nav-menu{
+.nav-menu, .nav-menu div button{
     font-size: 1rem;
 }
-.nav-menu a:hover{
+.nav-menu a:hover, .nav-menu div button:hover{
     color: #A5D7E8;
     transition: .3s;
 }
@@ -28,6 +28,14 @@
 .nav-bars-menu{
     font-size: 1.2rem;
     border-bottom: 2px solid #D9D9D9;
+}
+#dropdown-menu-nav li a{
+    color: #000000;
+    font-size: 1rem;
+}
+#dropdown-menu-nav li a:hover{
+    color: #F2F2F2;
+    background: #0B2447;
 }
 .form{
     width: 100%;
@@ -83,10 +91,16 @@
     list-style: none;
 }
 .foot label{
-    width: 44px;
+    width: 34px;
 }
 .foot span{
     font-size: 1.25rem;
+}
+.foot img[alt= 'Kabupaten Cianjur']{
+    width: 90px;
+}
+.foot img[alt= 'Disbudpar Cianjur']{
+    width: 160px;
 }
 .header-bg p, #btn-dropdown, .dropdown-menu li a, .btn-login{
     color: #F2F2F2;
@@ -107,6 +121,31 @@
     background: #F2F2F2;
     color: #000000;
 }
+#scroll-top-btn{
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 60px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #576CBC;
+    width: 70px;
+}
+#scroll-top-btn:hover{
+    background-color: #A5D7E8;
+    color: #000000;
+    transition: .3s;
+}
+.no-result{
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #A5D7E8;
+}
 
 /* Responsive */
 @media screen and (max-width:1399px) {
@@ -114,7 +153,7 @@
         width: 260px;
         height: 98px;
     }
-    .nav-menu{
+    .nav-menu, .nav-menu div button, #dropdown-menu-nav li a{
         font-size: 0.9rem;
     }
     .form{
@@ -141,12 +180,24 @@
     .button-search-2{
         width: 31px;
     }
+    #scroll-top-btn{
+        right: 30px;
+    }
+    .foot img[alt= 'Kabupaten Cianjur']{
+        width: 80px;
+    }
+    .foot img[alt= 'Disbudpar Cianjur']{
+        width: 140px;
+    }
+    .no-result{
+        font-size: 2rem;
+    }
 }
 @media screen and (max-width:1199px) {
     .logo{
         width: 220px;
     }
-    .nav-menu{
+    .nav-menu, .nav-menu div button, #dropdown-menu-nav li a{
         font-size: 0.8rem;
     }
     .form{
@@ -178,6 +229,15 @@
     }
     .button-search-2{
         width: 26px;
+    }
+    .foot img[alt= 'Kabupaten Cianjur']{
+        width: 70px;
+    }
+    .foot img[alt= 'Disbudpar Cianjur']{
+        width: 120px;
+    }
+    .no-result{
+        font-size: 1.8rem;
     }
 }
 @media screen and (max-width:1023px) {
@@ -215,7 +275,7 @@
         margin: 0 16px 0 0;
     }
     .foot label{
-        width: 34px;
+        width: 28px;
     }
     .header-bg p, #btn-dropdown{
         font-size: 1.5rem;
@@ -225,6 +285,12 @@
     }
     .search-input-2{
         font-size: 0.9rem;
+    }
+    #scroll-top-btn{
+        right: 20px;
+    }
+    .no-result{
+        font-size: 1.5rem;
     }
 }
 @media screen and (max-width: 767px) {
@@ -236,6 +302,20 @@
     }
     .button-search{
         width: 24px;
+    }
+    #scroll-top-btn{
+        right: 15px;
+        padding: 10px;
+        width: 60px;
+    }
+    .foot img[alt= 'Kabupaten Cianjur']{
+        width: 60px;
+    }
+    .foot img[alt= 'Disbudpar Cianjur']{
+        width: 110px;
+    }
+    .no-result{
+        font-size: 1.4rem;
     }
 }
 @media screen and (max-width: 575px) {
@@ -250,6 +330,20 @@
     }
     .dropdown-menu li a{
         font-size: 0.8rem;
+    }
+    #scroll-top-btn{
+        right: 25px;
+        padding: 8px;
+        width: 50px;
+    }
+    .foot img[alt= 'Kabupaten Cianjur']{
+        width: 70px;
+    }
+    .foot img[alt= 'Disbudpar Cianjur']{
+        width: 120px;
+    }
+    .no-result{
+        font-size: 1.3rem;
     }
 }
 @media screen and (max-width: 424px) {
@@ -266,6 +360,9 @@
         padding: 6px 0 6px 0;
     }
     .header-bg p, #btn-dropdown{
+        font-size: 1.2rem;
+    }
+    .no-result{
         font-size: 1.2rem;
     }
 }
@@ -286,9 +383,12 @@
         width: 20px;
     }
     .foot label{
-        width: 30px;
+        width: 26px;
     }
     .header-bg p, #btn-dropdown{
         font-size: 1.1rem;
+    }
+    .no-result{
+        font-size: 1rem;
     }
 }
