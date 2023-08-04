@@ -15,7 +15,7 @@ function ListKuliner() {
     const image = `${api}${getImage}`;
     const url = `${api}${getKuli}`
 
-    let limit = 10;
+    let limit = 20;
     let kategori = 'Tempat Makan'
 
     const getKuliner = async () => {

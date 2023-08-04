@@ -15,7 +15,7 @@ function ListVilla() {
     const image = `${api}${getImage}`;
     const url = `${api}${getAkom}`
 
-    let limit = 10;
+    let limit = 20;
     let kategori = 'Villa'
 
     const getAkomodasi = async () => {

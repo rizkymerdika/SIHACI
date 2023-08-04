@@ -16,7 +16,7 @@ function ListWA() {
     const image = `${api}${getImage}`;
     const url = `${api}${getOw}`
 
-    let limit = 10;
+    let limit = 20;
     let kategori = 'Wisata Alam'
 
     const getWisata = async () => {
@@ -99,6 +99,13 @@ function ListWA() {
                             }
                         </li>
                     ))
+                }
+                {
+                    pageAfter < wisataCount - 2 && (
+                    <li className="page-item disabled">
+                        <a className="page-link" href="#">...</a>
+                    </li>
+                    )
                 }
                 {
                     pageAfter != wisataCount ? (

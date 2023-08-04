@@ -15,7 +15,7 @@ function ListWB() {
     const image = `${api}${getImage}`;
     const url = `${api}${getOw}`
 
-    let limit = 10;
+    let limit = 20;
     let kategori = 'Wisata Buatan'
 
     const getWisata = async () => {

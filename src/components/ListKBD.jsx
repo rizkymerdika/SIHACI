@@ -15,7 +15,7 @@ function ListKBD() {
     const image = `${api}${getImage}`;
     const url = `${api}${getOw}`
 
-    let limit = 10;
+    let limit = 20;
     let kategori = 'Wisata Budaya'
 
     const getWisata = async () => {

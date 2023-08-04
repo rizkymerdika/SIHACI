@@ -15,7 +15,7 @@ function ListHB() {
     const image = `${api}${getImage}`;
     const url = `${api}${getAkom}`
 
-    let limit = 10;
+    let limit = 20;
     let kategori = 'Hotel Bintang'
 
     const getAkomodasi = async () => {
