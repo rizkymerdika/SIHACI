@@ -63,7 +63,7 @@ function ListKuliner() {
             { 
                 kuliner.map((item,index) => (
                     <div className="col-sm-6 col-lg-4 mb-5" key={index}>
-                        <Link to={`/kuliner/rekomendasikuliner/detailkuliner/${item.id_kuliner}`}>
+                        <Link to={`/kuliner/tempatmakan/detailkuliner/${item.id_kuliner}`}>
                             <div className="card travel-card border-0 m-auto">
                                 <img src={`${image}/${item.image_kuliner}`} alt={item.nama_kuliner} className="img-travel-outline" />
                                 <div className="card-body">
