@@ -51,6 +51,8 @@ import ScrollToTop from './components/ScrollToTop';
 import KulinerLainnya2 from './pages/KulinerLainnya2';
 import AdminListAkun from './pages/AdminListAkun';
 import AdminEditAkunHotel from './pages/AdminEditAkunHotel';
+import WSLainnya from './pages/WSLainnya';
+import WRLainnya from './pages/WRLainnya';
 
 function App() {
 
@@ -121,6 +123,14 @@ function App() {
           </Route>
           <Route path='wisatabudaya'>
             <Route index element={<KBDLainnya/>}/>
+            <Route path='detailwisata/:id' element={<DetailWisata/>}/>
+          </Route>
+          <Route path='wisatasejarah'>
+            <Route index element={<WSLainnya/>}/>
+            <Route path='detailwisata/:id' element={<DetailWisata/>}/>
+          </Route>
+          <Route path='wisatareligius'>
+            <Route index element={<WRLainnya/>}/>
             <Route path='detailwisata/:id' element={<DetailWisata/>}/>
           </Route>
         </Route>

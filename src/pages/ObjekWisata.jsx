@@ -8,9 +8,11 @@ import WisataAlam from '../components/WisataAlam'
 import Footer from '../components/footer'
 import WisataBuatan from '../components/WisataBuatan'
 import WisataBudaya from '../components/WisataBudaya'
+import WisataSejarah from '../components/WisataSejarah'
 import React, { useEffect } from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import WisataReligius from '../components/WisataReligius'
 
 function ObjekWisata() {
   useEffect(() => {
@@ -29,6 +31,8 @@ function ObjekWisata() {
       <WisataAlam/>
       <WisataBuatan/>
       <WisataBudaya/>
+      <WisataSejarah/>
+      <WisataReligius/>
       <Footer/>
     </>
   )
