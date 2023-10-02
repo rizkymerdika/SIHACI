@@ -41,6 +41,8 @@ function Nav() {
                                         <li><Link className="dropdown-item" to={'/objekwisata/wisataalam'}>Wisata Alam</Link></li>
                                         <li><Link className="dropdown-item" to={'/objekwisata/wisatabuatan'}>Wisata Buatan</Link></li>
                                         <li><Link className="dropdown-item" to={'/objekwisata/wisatabudaya'}>Wisata Budaya</Link></li>
+                                        <li><Link className="dropdown-item" to={'/objekwisata/wisatasejarah'}>Wisata Sejarah</Link></li>
+                                        <li><Link className="dropdown-item" to={'/objekwisata/wisatareligius'}>Wisata Religi</Link></li>
                                     </ul>
                                 </div>    
                             </li>}

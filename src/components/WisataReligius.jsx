@@ -61,7 +61,7 @@ function WisataReligius() {
 
   return (
     <div className="mt-5" data-aos='fade-up'>
-        <h1 className="content-2-head fw-semibold text-center">Wisata Religius</h1>
+        <h1 className="content-2-head fw-semibold text-center">Wisata Religi</h1>
         <div className="wisata-slider" data-aos='fade-up'>
             <div className="container pt-3">
                 <div className="row mt-3">
