@@ -24,7 +24,6 @@ function KontenAdminAkom() {
         axios(url)
         .then((res) => {
             setAkomodasi(res.data.data)
-            console.log(res)
         })
     }, [])
 
